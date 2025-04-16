@@ -39,14 +39,29 @@
             <label for="ufFornecedor">UF:</label>
             <input type="text" name="ufFornecedor" id="ufFornecedor">
         </div>
-        <div>
-            <label for="cpfFornecedor">CPF:</label>
-            <input type="text" name="cpfFornecedor" id="cpfFornecedor">
+        <!-- Campos pessoa física -->
+        <div id="pf-fields" style="display: none;">
+            <div>
+                <label for="cpfFornecedor">CPF:</label>
+                <input type="text" name="cpfFornecedor" id="cpfFornecedor">
+            </div>
+            <div>
+                <label for="rgFornecedor">RG:</label>
+                <input type="text" name="rgFornecedor" id="rgFornecedor">
+            </div>
         </div>
-        <div>
-            <label for="rgFornecedor">RG:</label>
-            <input type="text" name="rgFornecedor" id="rgFornecedor">
+        <!-- Campos pessoa jurídica -->
+        <div id="pj-fields" style="display: none;">
+            <div>
+                <label for="cnpjFornecedor">CNPJ:</label>
+                <input type="text" name="cpfFornecedor" id="cnpjFornecedor">
+            </div>
+            <div>
+                <label for="ieFornecedor">I.E.:</label>
+                <input type="text" name="rgFornecedor" id="ieFornecedor">
+            </div>
         </div>
+        <!-- Campos comuns -->
         <div>
             <label for="foneFornecedor">Telefone:</label>
             <input type="text" name="foneFornecedor" id="foneFornecedor">
@@ -65,3 +80,21 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.getElementById('tipoFornecedor').addEventListener('change', function () {
+        const pfFields = document.getElementById('pf-fields');
+        const pjFields = document.getElementById('pj-fields');
+
+        if (this.value === 'PF') {
+            pfFields.style.display = 'block';
+            pjFields.style.display = 'none';
+        } else if (this.value === 'PJ') {
+            pfFields.style.display = 'none';
+            pjFields.style.display = 'block';
+        } else {
+            pfFields.style.display = 'none';
+            pjFields.style.display = 'none';
+        }
+    });
+</script>
