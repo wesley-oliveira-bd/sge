@@ -49,6 +49,9 @@
                 case 'inserir-produto':
                     include("paginas/produto/inserir-produto.php");
                     break;
+                case 'inserir-fornecedor':
+                    include("paginas/fornecedor/inserir-fornecedor.php");
+                    break;
                 default:
                     # code...
                     break;

@@ -2,7 +2,7 @@
     <h3>Cadastro de Fornecedor</h3>
 </header>
 <div>
-    <form action="" method="post">
+    <form action="index.php?menuop=inserir-fornecedor" method="post">
         <div>
             <label for="tipoFornecedor">Tipo: </label>
                 <select name="tipoFornecedor" id="tipoFornecedor" required>
@@ -21,7 +21,7 @@
         </div>
         <div>
             <label for="numLogradFornecedor">Número:</label>
-            <input type="number " name="numLogradFornecedor" id="numLogradFornecedor">
+            <input type="number" name="numLogradFornecedor" id="numLogradFornecedor">
         </div>
         <div>
             <label for="compLogradFornecedor">Complemento:</label>
@@ -39,6 +39,10 @@
             <label for="ufFornecedor">UF:</label>
             <input type="text" name="ufFornecedor" id="ufFornecedor">
         </div>
+        <div>
+            <label for="cepFornecedor">CEP:</label>
+            <input type="text" name="cepFornecedor" id="cepFornecedor">
+        </div>
         <!-- Campos pessoa física -->
         <div id="pf-fields" style="display: none;">
             <div>
@@ -54,11 +58,11 @@
         <div id="pj-fields" style="display: none;">
             <div>
                 <label for="cnpjFornecedor">CNPJ:</label>
-                <input type="text" name="cpfFornecedor" id="cnpjFornecedor">
+                <input type="text" name="cnpjFornecedor" id="cnpjFornecedor">
             </div>
             <div>
                 <label for="ieFornecedor">I.E.:</label>
-                <input type="text" name="rgFornecedor" id="ieFornecedor">
+                <input type="text" name="ieFornecedor" id="ieFornecedor">
             </div>
         </div>
         <!-- Campos comuns -->
@@ -76,7 +80,7 @@
         </div>
         <hr>
         <div>
-            <input type="submit" value="Adicionar" name="btnAdcicionar">
+            <input type="submit" value="Adicionar" name="btnAdcionar">
         </div>
     </form>
 </div>

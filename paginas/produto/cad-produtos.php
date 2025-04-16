@@ -40,7 +40,7 @@
         </div>
         <hr>
         <div>
-            <input type="submit" value="Adicionar" name="btnAdcicionar">
+            <input type="submit" value="Adicionar" name="btnAdcionar">
         </div>
     </form>
 </div>
