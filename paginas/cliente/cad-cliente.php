@@ -4,7 +4,7 @@
 <div>
 
  <!-- Campos comuns -->
-    <form action="" method="post">
+    <form action="index.php?menuop=inserir-cliente" method="post">
         <div>
             <label for="tipoCliente">Tipo: </label>
                 <select name="tipoCliente" id="tipoCliente" required>
@@ -41,6 +41,10 @@
             <label for="ufCliente">UF:</label>
             <input type="text" name="ufCliente" id="ufCliente">
         </div>
+        <div>
+            <label for="cepCliente">CEP:</label>
+            <input type="text" name="cepCliente" id="cepCliente">
+        </div>
          <!-- Campos pessoa física -->
         <div id="pf-fields" style="display: none;">
             <div>
@@ -75,6 +79,10 @@
         <div>
             <label for="emailCliente">Email:</label>
             <input type="text" name="emailCliente" id="emailCliente">
+        </div>
+        <div>
+            <label for="nascCliente">Data nascimento:</label>
+            <input type="date" name="nascCliente" id="nascCliente">
         </div>
         <hr>
         <div>
