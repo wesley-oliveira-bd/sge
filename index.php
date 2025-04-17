@@ -34,11 +34,23 @@
                 case 'fornecedores':
                     include("paginas/fornecedor/fornecedor.php");
                     break;
+                case 'editar-fornecedor':
+                    include("paginas/fornecedor/editar-fornecedor.php");
+                    break;
+                case 'atualizar-fornecedor':
+                    include("paginas/fornecedor/atualizar-fornecedor.php");
+                    break;
                 case 'produtos':
                     include("paginas/produto/produtos.php");
                     break;
                 case 'cad-cliente':
                     include("paginas/cliente/cad-cliente.php");
+                    break;
+                case 'editar-cliente':
+                    include("paginas/cliente/editar-cliente.php");
+                    break;
+                case 'atualizar-cliente':
+                    include("paginas/cliente/atualizar-cliente.php");
                     break;
                 case 'cad-fornecedor':
                     include("paginas/fornecedor/cad-fornecedor.php");

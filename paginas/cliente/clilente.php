@@ -25,6 +25,7 @@
             <th>Celular</th>
             <th>Email</th>
             <th>Nascimento</th>
+            <th>Editar</th>
         </tr>
     </thead>
     <tbody>
@@ -39,13 +40,13 @@
         upper(bairroCliente) AS bairroCliente,
         upper(cidadeCliente) AS cidadeCliente,
         upper(ufCliente) AS ufCliente,
-        cepCliente,
+        CONCAT(SUBSTRING(cepCliente, 1, 5), '-', SUBSTRING(cepCliente, 6, 3)) AS cepCliente,
         cpfCliente,
         rgCliente,
         cnpjCliente,
         ieCliente,
-        foneCliente,
-        celularCliente,
+        CONCAT('(', SUBSTRING(foneCliente, 1, 2), ')', SUBSTRING(foneCliente, 3, 4), '-', SUBSTRING(foneCliente, 7, 4)) AS foneCliente,
+        CONCAT('(', SUBSTRING(celularCliente, 1, 2), ')', SUBSTRING(celularCliente, 3, 5), '-', SUBSTRING(celularCliente, 7, 4)) AS celularCliente,
         lower(emailCliente) AS emailCliente,
         DATE_FORMAT(nascCliente, '%d/%m/%Y') as nascCliente
         
@@ -66,12 +67,35 @@
             <td> <?=$dados["cidadeCliente"]?> </td>
             <td> <?=$dados["ufCliente"]?> </td>
             <td> <?=$dados["cepCliente"]?> </td>
-            <td> <?=$dados["cpfCliente"]?> </td>
-            <td> <?=$dados["rgCliente"]?> </td>
+
+            <td>
+            <?php
+                if (!empty($dados["cpfCliente"])) {
+                    echo $dados["cpfCliente"];
+                } elseif (!empty($dados["cnpjCliente"])) {
+                    echo $dados["cnpjCliente"];
+                } else {
+                    echo "-";
+                }
+            ?>
+            </td>
+            <td>
+            <?php
+                if (!empty($dados["rgCliente"])) {
+                    echo $dados["rgCliente"];
+                } elseif (!empty($dados["ieCliente"])) {
+                    echo $dados["ieCliente"];
+                } else {
+                    echo "-";
+                }
+            ?>
+            </td>
+            
             <td> <?=$dados["foneCliente"]?> </td>
             <td> <?=$dados["celularCliente"]?> </td>
             <td> <?=$dados["emailCliente"]?> </td>
             <td> <?=$dados["nascCliente"]?> </td>
+            <td> <a href="index.php?menuop=editar-cliente&idCliente=<?=$dados["idCliente"]?>">Editar</a> </td>
         </tr>
     <?php } ?>
     </tbody>

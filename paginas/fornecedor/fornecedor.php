@@ -25,6 +25,7 @@
             <th>Celular</th>
             <th>Email</th>
             <th>Nascimento</th>
+            <th>Editar</th>
         </tr>
     </thead>
     <tbody>
@@ -39,13 +40,13 @@
         upper(bairroFornecedor) AS bairroFornecedor,
         upper(cidadeFornecedor) AS cidadeFornecedor,
         upper(ufFornecedor) AS ufFornecedor,
-        cepFornecedor,
+        CONCAT(SUBSTRING(cepFornecedor, 1, 5), '-', SUBSTRING(cepFornecedor, 6, 3)) AS cepFornecedor,
         cpfFornecedor,
         rgFornecedor,
         cnpjFornecedor,
         ieFornecedor,
-        foneFornecedor,
-        celularFornecedor,
+        CONCAT('(', SUBSTRING(foneFornecedor, 1, 2), ')', SUBSTRING(foneFornecedor, 3, 4), '-', SUBSTRING(foneFornecedor, 7, 4)) AS foneFornecedor,
+        CONCAT('(', SUBSTRING(celularFornecedor, 1, 2), ')', SUBSTRING(celularFornecedor, 3, 5), '-', SUBSTRING(celularFornecedor, 7, 4)) AS celularFornecedor,
         lower(emailFornecedor) AS emailFornecedor,
         DATE_FORMAT(nascFornecedor, '%d/%m/%Y') AS nascFornecedor
          FROM tbfornecedores";
@@ -65,12 +66,35 @@
             <td> <?=$dados["cidadeFornecedor"]?> </td>
             <td> <?=$dados["ufFornecedor"]?> </td>
             <td> <?=$dados["cepFornecedor"]?> </td>
-            <td> <?=$dados["cpfFornecedor"]?> </td>
-            <td> <?=$dados["rgFornecedor"]?> </td>
+            
+            <td>
+            <?php
+                if (!empty($dados["cpfFornecedor"])) {
+                    echo $dados["cpfFornecedor"];
+                } elseif (!empty($dados["cnpjFornecedor"])) {
+                    echo $dados["cnpjFornecedor"];
+                } else {
+                    echo "-";
+                }
+            ?>
+            </td>
+            <td>
+            <?php
+                if (!empty($dados["rgFornecedor"])) {
+                    echo $dados["rgFornecedor"];
+                } elseif (!empty($dados["ieFornecedor"])) {
+                    echo $dados["ieFornecedor"];
+                } else {
+                    echo "-";
+                }
+            ?>
+            </td>
+
             <td> <?=$dados["foneFornecedor"]?> </td>
             <td> <?=$dados["celularFornecedor"]?> </td>
             <td> <?=$dados["emailFornecedor"]?> </td>
             <td> <?=$dados["nascFornecedor"]?> </td>
+            <td><a href="index.php?menuop=editar-fornecedor&idFornecedor=<?=$dados["idFornecedor"]?>">Editar</a></td>
         </tr>
     <?php } ?>
     </tbody>
