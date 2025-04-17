@@ -29,7 +29,26 @@
     </thead>
     <tbody>
     <?php 
-        $sql = "SELECT * FROM tbfornecedores";
+        $sql = "SELECT 
+        idFornecedor,
+        tipoFornecedor,
+        upper(nomeFornecedor) AS nomeFornecedor,
+        upper(logradFornecedor) AS logradFornecedor,
+        numLogradFornecedor,
+        upper(compLogradFornecedor) AS compLogradFornecedor,
+        upper(bairroFornecedor) AS bairroFornecedor,
+        upper(cidadeFornecedor) AS cidadeFornecedor,
+        upper(ufFornecedor) AS ufFornecedor,
+        cepFornecedor,
+        cpfFornecedor,
+        rgFornecedor,
+        cnpjFornecedor,
+        ieFornecedor,
+        foneFornecedor,
+        celularFornecedor,
+        lower(emailFornecedor) AS emailFornecedor,
+        DATE_FORMAT(nascFornecedor, '%d/%m/%Y') AS nascFornecedor
+         FROM tbfornecedores";
         $rs = mysqli_query($conexao, $sql) or dir("Erro ao executar a consulta " . mysqli_error($conexao));
         while ($dados = mysqli_fetch_assoc($rs)) {
             

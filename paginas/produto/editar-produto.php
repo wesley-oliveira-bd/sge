@@ -1,47 +1,58 @@
-<header>
-    <h3>Cadastro de Produtos</h3>
-</header>
+<?php 
+
+$idProduto = $_GET["idProduto"];
+$sql = "SELECT * FROM tbprodutos WHERE idproduto={$idProduto}";
+$rs = mysqli_query($conexao, $sql) or die("Erro ao recuperar dados." . mysqli_error($conexao));
+$dados = mysqli_fetch_assoc($rs);
+?>
+
+
+<header><h3>Editar Produtos</h3></header>
+
 <div>
-    <form action="index.php?menuop=inserir-produto" method="post">
-        
+    <form action="index.php?menuop=atualizar-produto" method="post">
+        <div>
+            <label for="idProduto">ID:</label>
+            <input type="text" name="idProduto" id="idProduto" value="<?=$dados["idProduto"]?>">
+        </div>
         <div>
             <label for="refProduto">Referência:</label>
-            <input type="text" name="refProduto" id="refProduto">
+            <input type="text" name="refProduto" id="refProduto" value="<?=$dados["refProduto"]?>">
         </div>
         <div>
             <label for="descricaoProduto">Descrição:</label>
-            <input type="text" name="descricaoProduto" id="descricaoProduto">
+            <input type="text" name="descricaoProduto" id="descricaoProduto" value="<?=$dados["descricaoProduto"]?>">
         </div>
         <div>
             <label for="unidProduto">Unid:</label>
-            <input type="text" name="unidProduto" id="unidProduto">
+            <input type="text" name="unidProduto" id="unidProduto" value="<?=$dados["unidProduto"]?>">
         </div>
         <div>
             <label for="qtProduto">Quant.:</label>
-            <input type="text" name="qtProduto" id="qtProduto">
+            <input type="text" name="qtProduto" id="qtProduto" value="<?=$dados["qtProduto"]?>">
         </div>
         <div>
-            <label for="custoProduto">Preço custo:</label>
-            <input type="text" name="custoProduto" id="custoProduto">
+            <label for="custoProduto">Preço custo(R$):</label>
+            <input type="text" name="custoProduto" id="custoProduto" value="<?=$dados["custoProduto"]?>">
         </div>
         <div>
-            <label for="vendaProduto">Preço venda:</label>
-            <input type="text" name="vendaProduto" id="vendaProduto">
+            <label for="vendaProduto">Preço venda(R$):</label>
+            <input type="text" name="vendaProduto" id="vendaProduto" value="<?=$dados["vendaProduto"]?>">
         </div>
         <div>
             <label for="margemProduto">Margem(%):</label>
-            <input type="text" name="margemProduto" id="margemProduto">
+            <input type="text" name="margemProduto" id="margemProduto" value="<?=$dados["margemProduto"]?>">
         </div>
         <div>
             <label for="obsProduto">Observ.:</label>
-            <input type="text" name="obsProduto" id="obsProduto">
+            <input type="text" name="obsProduto" id="obsProduto" value="<?=$dados["obsProduto"]?>">
         </div>
         <div>
             <input type="button" value="Foto">
         </div>
         <hr>
         <div>
-            <input type="submit" value="Adicionar" name="btnAdcionar">
+            <input type="submit" value="Atualizar" name="btnAtualizar">
         </div>
     </form>
 </div>

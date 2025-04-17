@@ -55,6 +55,12 @@
                 case 'inserir-cliente':
                     include("paginas/cliente/inserir-cliente.php");
                     break;
+                case 'editar-produto':
+                    include("paginas/produto/editar-produto.php");
+                    break;
+                case 'atualizar-produto':
+                    include("paginas/produto/atualizar-produto.php");
+                    break;
                 default:
                     # code...
                     break;
