@@ -73,6 +73,9 @@
                 case 'inserir-fornecedor':
                     include("paginas/fornecedor/inserir-fornecedor.php");
                     break;
+                case 'duplicar-produto':
+                    include("paginas/produto/duplicar-produto.php");
+                    break;
                 case 'inserir-cliente':
                     include("paginas/cliente/inserir-cliente.php");
                     break;

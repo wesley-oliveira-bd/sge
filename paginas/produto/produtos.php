@@ -58,3 +58,7 @@
     <?php } ?>
     </tbody>
 </table>
+
+<div>
+    <img src="./paginas/produto/fotos-produtos/sem_imagem.png" alt="foto sem imagem">
+</div>

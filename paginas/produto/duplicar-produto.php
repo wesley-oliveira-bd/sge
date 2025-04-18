@@ -10,11 +10,7 @@ $dados = mysqli_fetch_assoc($rs);
 <header><h3>Editar Produtos</h3></header>
 
 <div>
-    <form action="index.php?menuop=atualizar-produto" method="post">
-        <div>
-            <label for="idProduto">ID:</label>
-            <input type="text" name="idProduto" id="idProduto" value="<?=$dados["idProduto"]?>">
-        </div>
+    <form action="index.php?menuop=inserir-produto" method="post">
         <div>
             <label for="refProduto">Referência:</label>
             <input type="text" name="refProduto" id="refProduto" value="<?=$dados["refProduto"]?>">
@@ -52,19 +48,7 @@ $dados = mysqli_fetch_assoc($rs);
         </div>
         <hr>
         <div>
-            <input type="submit" value="Atualizar" name="btnAtualizar">
-        </div>
-        <div>
-        <a href="index.php?menuop=excluir-produto&idProduto=<?=$dados["idProduto"]?>" 
-            onclick="return confirm('Tem certeza que deseja excluir este produto?')">
-            Excluir
-        </a>
-        </div>
-        <div>
-        <a href="index.php?menuop=duplicar-produto&idProduto=<?=$dados["idProduto"]?>" 
-            onclick="return confirm('Tem certeza que deseja duplicar este produto?')">
-            Duplicar
-        </a>
+            <input type="submit" value="Adicionar" name="btnAdicionar">
         </div>
     </form>
 </div>
