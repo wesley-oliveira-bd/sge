@@ -102,6 +102,12 @@ $dados = mysqli_fetch_assoc($rs);
         <div>
             <input type="submit" value="Atualizar" name="btnAtualizar">
         </div>
+        <div>
+        <a href="index.php?menuop=excluir-fornecedor&idFornecedor=<?=$dados["idFornecedor"]?>" 
+            onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+            Excluir
+        </a>
+        </div>
 
     </form>
 </div>

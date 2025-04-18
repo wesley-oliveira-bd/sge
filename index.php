@@ -40,6 +40,9 @@
                 case 'atualizar-fornecedor':
                     include("paginas/fornecedor/atualizar-fornecedor.php");
                     break;
+                case 'excluir-fornecedor':
+                    include("paginas/fornecedor/excluir-fornecedor.php");
+                    break;
                 case 'produtos':
                     include("paginas/produto/produtos.php");
                     break;
@@ -52,6 +55,9 @@
                 case 'atualizar-cliente':
                     include("paginas/cliente/atualizar-cliente.php");
                     break;
+                case 'excluir-cliente':
+                    include("paginas/cliente/excluir-cliente.php");
+                    break;
                 case 'cad-fornecedor':
                     include("paginas/fornecedor/cad-fornecedor.php");
                     break;
@@ -60,6 +66,9 @@
                     break;
                 case 'inserir-produto':
                     include("paginas/produto/inserir-produto.php");
+                    break;
+                case 'excluir-produto':
+                    include("paginas/produto/excluir-produto.php");
                     break;
                 case 'inserir-fornecedor':
                     include("paginas/fornecedor/inserir-fornecedor.php");
