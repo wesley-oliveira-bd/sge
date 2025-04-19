@@ -3,10 +3,10 @@
 </header>
 
 <div>
-    <a href="index.php?menuop=cad-fornecedor">Cadastrar</a>
+    <a class="btn btn-primary mb-2" href="index.php?menuop=cad-fornecedor">Cadastrar</a>
 </div>
 
-<table border="1">
+<table class="table table-sm table-bordered table-hover small">
     <thead>
         <tr>
             <th>ID</th>
@@ -91,10 +91,10 @@
             </td>
 
             <td> <?=$dados["foneFornecedor"]?> </td>
-            <td> <?=$dados["celularFornecedor"]?> </td>
+            <td class="text-nowrap"> <?=$dados["celularFornecedor"]?> </td>
             <td> <?=$dados["emailFornecedor"]?> </td>
             <td> <?=$dados["nascFornecedor"]?> </td>
-            <td><a href="index.php?menuop=editar-fornecedor&idFornecedor=<?=$dados["idFornecedor"]?>">Editar</a></td>
+            <td class="text-center"><a class="btn-outline-warning" href="index.php?menuop=editar-fornecedor&idFornecedor=<?=$dados["idFornecedor"]?>"><i class="bi bi-pencil-square"></a></td>
         </tr>
     <?php } ?>
     </tbody>

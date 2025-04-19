@@ -52,17 +52,17 @@ $dados = mysqli_fetch_assoc($rs);
         </div>
         <hr>
         <div>
-            <input type="submit" value="Atualizar" name="btnAtualizar">
+            <input class="btn btn-primary mb-2" type="submit" value="Atualizar" name="btnAtualizar">
         </div>
         <div>
-        <a href="index.php?menuop=excluir-produto&idProduto=<?=$dados["idProduto"]?>" 
-            onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+        <a class="btn btn-danger mb-2" href="index.php?menuop=excluir-produto&idProduto=<?=$dados["idProduto"]?>" 
+            onclick="return confirm('Tem certeza que deseja excluir este produto?')"><i class="bi bi-trash3"></i>
             Excluir
         </a>
         </div>
         <div>
-        <a href="index.php?menuop=duplicar-produto&idProduto=<?=$dados["idProduto"]?>" 
-            onclick="return confirm('Tem certeza que deseja duplicar este produto?')">
+        <a class="btn btn-secondary" href="index.php?menuop=duplicar-produto&idProduto=<?=$dados["idProduto"]?>" 
+            onclick="return confirm('Tem certeza que deseja duplicar este produto?')"><i class="bi bi-copy"></i>
             Duplicar
         </a>
         </div>

@@ -100,11 +100,11 @@ $dados = mysqli_fetch_assoc($rs);
         </div>
         <hr>
         <div>
-            <input type="submit" value="Atualizar" name="btnAtualizar">
+            <input class="btn btn-primary" type="submit" value="Atualizar" name="btnAtualizar">
         </div>
         <div>
-        <a href="index.php?menuop=excluir-cliente&idCliente=<?=$dados["idCliente"]?>" 
-            onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+        <a class="btn btn-danger" href="index.php?menuop=excluir-cliente&idCliente=<?=$dados["idCliente"]?>" 
+            onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
             Excluir
         </a>
         </div>

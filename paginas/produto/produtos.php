@@ -3,10 +3,10 @@
 </header>
 
 <div>
-<a href="index.php?menuop=cad-produtos">Cadastrar</a>
+<a class="btn btn-primary mb-2" href="index.php?menuop=cad-produtos">Cadastrar</a>
 </div>
 
-<table border="1">
+<table class="table table-sm table-bordered table-hover small">
     <thead>
         <tr>
             <th>ID</th>
@@ -53,7 +53,7 @@
             <td> <?=$dados["margemProduto"]?> </td>
             <td> <?=$dados["fotoProduto"]?> </td>
             <td> <?=$dados["obsProduto"]?> </td>
-            <td> <a href="index.php?menuop=editar-produto&idProduto=<?=$dados["idProduto"]?>">Editar</a> </td>
+            <td class="text-center"> <a class="btn-outline-warning" href="index.php?menuop=editar-produto&idProduto=<?=$dados["idProduto"]?>"><i class="bi bi-pencil-square"></i></a> </td>
         </tr>
     <?php } ?>
     </tbody>

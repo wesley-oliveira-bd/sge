@@ -3,10 +3,10 @@
 </header>
 
 <div>
-    <a href="index.php?menuop=cad-cliente">Cadastrar</a>
+    <a class="btn btn-primary mb-2" href="index.php?menuop=cad-cliente">Cadastrar</a>
 </div>
 
-<table border="1">
+<table class="table table-sm table-bordered table-hover small">
     <thead>
         <tr>
             <th>ID</th>
@@ -92,10 +92,10 @@
             </td>
             
             <td> <?=$dados["foneCliente"]?> </td>
-            <td> <?=$dados["celularCliente"]?> </td>
+            <td class="text-nowrap"> <?=$dados["celularCliente"]?> </td>
             <td> <?=$dados["emailCliente"]?> </td>
             <td> <?=$dados["nascCliente"]?> </td>
-            <td> <a href="index.php?menuop=editar-cliente&idCliente=<?=$dados["idCliente"]?>">Editar</a> </td>
+            <td class="text-center"> <a class="btn-outline-warning" href="index.php?menuop=editar-cliente&idCliente=<?=$dados["idCliente"]?>"><i class="bi bi-pencil-square"></i></a> </td>
         </tr>
     <?php } ?>
     </tbody>

@@ -45,7 +45,9 @@
         </div>
     </form>
 </div>
-
+<div>
+    <img width="450" src="./paginas/produto/fotos-produtos/sem_imagem.png" alt="foto sem imagem">
+</div>
 
 <script>
     const custoInput = document.getElementById("custoProduto");
