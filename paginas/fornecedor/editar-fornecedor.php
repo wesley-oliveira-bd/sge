@@ -13,100 +13,123 @@ $dados = mysqli_fetch_assoc($rs);
 <div>
 
  <!-- Campos comuns -->
-    <form action="index.php?menuop=atualizar-fornecedor" method="post">
-        <div>
-            <label for="idFornecedor">ID:</label>
-            <input type="text" name="idFornecedor" id="idFornecedor" value="<?=$dados["idFornecedor"]?>">
-        </div>
-        <div>
-            <label for="tipoFornecedor">Tipo: </label>
-                <select name="tipoFornecedor" id="tipoFornecedor" required>
-                    <option value="">Selecione...</option>
-                    <option value="PF" <?= ($dados["tipoFornecedor"] == 'PF') ? 'selected' : '' ?>>Pessoa Física (PF)</option>
-                    <option value="PJ" <?= ($dados["tipoFornecedor"] == 'PJ') ? 'selected' : '' ?>>Pessoa Jurídica (PJ)</option>
-    </select>
+    <form class="p-4" action="index.php?menuop=atualizar-fornecedor" method="post">
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="idFornecedor">ID:</label>
+                <input class="form-control input-cinza-claro" type="text" name="idFornecedor" id="idFornecedor" value="<?=$dados["idFornecedor"]?>">
+            </div>
+            <div class="col">
+                <label  class="form-label" for="tipoFornecedor">Tipo: </label>
+                    <select class="form-control input-cinza-claro" name="tipoFornecedor" id="tipoFornecedor" required>
+                        <option value="">Selecione...</option>
+                        <option value="PF" <?= ($dados["tipoFornecedor"] == 'PF') ? 'selected' : '' ?>>Pessoa Física (PF)</option>
+                        <option value="PJ" <?= ($dados["tipoFornecedor"] == 'PJ') ? 'selected' : '' ?>>Pessoa Jurídica (PJ)</option>
                 </select>
-        </div>
-        <div>
-            <label for="nomeFornecedor">Nome:</label>
-            <input type="text" name="nomeFornecedor" id="nomeFornecedor" value="<?=$dados["nomeFornecedor"]?>">
-        </div>
-        <div>
-            <label for="logradFornecedor">Endereço:</label>
-            <input type="text" name="logradFornecedor" id="logradFornecedor" value="<?=$dados["logradFornecedor"]?>">
-        </div>
-        <div>
-            <label for="numLogradFornecedor">Número:</label>
-            <input type="number " name="numLogradFornecedor" id="numLogradFornecedor" value="<?=$dados["numLogradFornecedor"]?>">
-        </div>
-        <div>
-            <label for="compLogradFornecedor">Complemento:</label>
-            <input type="text" name="compLogradFornecedor" id="compLogradFornecedor" value="<?=$dados["compLogradFornecedor"]?>">
-        </div>
-        <div>
-            <label for="bairroFornecedor">Bairro:</label>
-            <input type="text" name="bairroFornecedor" id="bairroFornecedor" value="<?=$dados["bairroFornecedor"]?>">
-        </div>
-        <div>
-            <label for="cidadeFornecedor">Cidade:</label>
-            <input type="text" name="cidadeFornecedor" id="cidadeFornecedor" value="<?=$dados["cidadeFornecedor"]?>">
-        </div>
-        <div>
-            <label for="ufFornecedor">UF:</label>
-            <input type="text" name="ufFornecedor" id="ufFornecedor" value="<?=$dados["ufFornecedor"]?>">
-        </div>
-        <div>
-            <label for="cepFornecedor">CEP:</label>
-            <input type="text" name="cepFornecedor" id="cepFornecedor" value="<?=$dados["cepFornecedor"]?>">
-        </div>
-         <!-- Campos pessoa física -->
-        <div id="pf-fields" style="display: none;">
-            <div>
-                <label for="cpfFornecedor">CPF:</label>
-                <input type="text" name="cpfFornecedor" id="cpfFornecedor" value="<?=$dados["cpfFornecedor"]?>">
+                    </select>
             </div>
-            <div>
-                <label for="rgFornecedor">RG:</label>
-                <input type="text" name="rgFornecedor" id="rgFornecedor" value="<?=$dados["rgFornecedor"]?>">
+            <div class="col">
+                <label class="form-label" for="nomeFornecedor">Nome:</label>
+                <input class="form-control input-cinza-claro" type="text" name="nomeFornecedor" id="nomeFornecedor" value="<?=$dados["nomeFornecedor"]?>">
             </div>
         </div>
-         <!-- Campos pessoa jurisica -->
-        <div id="pj-fields" style="display: none;">
-            <div>
-                <label for="cnpjFornecedor">CNPJ:</label>
-                <input type="text" name="cnpjFornecedor" id="cnpjFornecedor" value="<?=$dados["cnpjFornecedor"]?>">
+
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="logradFornecedor">Endereço:</label>
+                <input class="form-control input-cinza-claro" type="text" name="logradFornecedor" id="logradFornecedor" value="<?=$dados["logradFornecedor"]?>">
             </div>
-            <div>
-                <label for="ieFornecedor">I.E.:</label>
-                <input type="text" name="ieFornecedor" id="ieFornecedor" value="<?=$dados["ieFornecedor"]?>">
+            <div class="col">
+                <label class="form-label" for="numLogradFornecedor">Número:</label>
+                <input class="form-control input-cinza-claro" type="number " name="numLogradFornecedor" id="numLogradFornecedor" value="<?=$dados["numLogradFornecedor"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="compLogradFornecedor">Complemento:</label>
+                <input class="form-control input-cinza-claro" type="text" name="compLogradFornecedor" id="compLogradFornecedor" value="<?=$dados["compLogradFornecedor"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="bairroFornecedor">Bairro:</label>
+                <input class="form-control input-cinza-claro" type="text" name="bairroFornecedor" id="bairroFornecedor" value="<?=$dados["bairroFornecedor"]?>">
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="cidadeFornecedor">Cidade:</label>
+                <input class="form-control input-cinza-claro" type="text" name="cidadeFornecedor" id="cidadeFornecedor" value="<?=$dados["cidadeFornecedor"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="ufFornecedor">UF:</label>
+                <input class="form-control input-cinza-claro" type="text" name="ufFornecedor" id="ufFornecedor" value="<?=$dados["ufFornecedor"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="cepFornecedor">CEP:</label>
+                <input class="form-control input-cinza-claro" type="text" name="cepFornecedor" id="cepFornecedor" value="<?=$dados["cepFornecedor"]?>">
+            </div>
+        </div>
+
+         
+             <!-- Campos pessoa física -->
+            
+                <div id="pf-fields" style="display: none;">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="cpfFornecedor">CPF:</label>
+                            <input class="form-control input-cinza-claro" type="text" name="cpfFornecedor" id="cpfFornecedor" value="<?=$dados["cpfFornecedor"]?>">
+                        </div>
+                                            
+                        <div class="col">
+                            <label class="form-label" for="rgFornecedor">RG:</label>
+                            <input class="form-control input-cinza-claro" type="text" name="rgFornecedor" id="rgFornecedor" value="<?=$dados["rgFornecedor"]?>">
+                        </div>
+                    </div>
+                </div>
+                 <!-- Campos pessoa jurisica -->        
+                <div id="pj-fields" style="display: none;">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="cnpjFornecedor">CNPJ:</label>
+                            <input class="form-control input-cinza-claro" type="text" name="cnpjFornecedor" id="cnpjFornecedor" value="<?=$dados["cnpjFornecedor"]?>">
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="ieFornecedor">I.E.:</label>
+                            <input class="form-control input-cinza-claro" type="text" name="ieFornecedor" id="ieFornecedor" value="<?=$dados["ieFornecedor"]?>">
+                        </div>
+                    </div>
+                </div>
+         
+
          <!-- Campos comuns -->
-        <div>
-            <label for="foneFornecedor">Telefone:</label>
-            <input type="text" name="foneFornecedor" id="foneFornecedor" value="<?=$dados["foneFornecedor"]?>">
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="foneFornecedor">Telefone:</label>
+                <input class="form-control input-cinza-claro" type="text" name="foneFornecedor" id="foneFornecedor" value="<?=$dados["foneFornecedor"]?>">
+            </div>
+            <div class="col">
+                <labe class="form-label" for="celularFornecedor">Celular:</label>
+                <input class="form-control input-cinza-claro" type="text" name="celularFornecedor" id="celularFornecedor" value="<?=$dados["celularFornecedor"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="emailFornecedor">Email:</label>
+                <input class="form-control input-cinza-claro" type="text" name="emailFornecedor" id="emailFornecedor" value="<?=$dados["emailFornecedor"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="nascFornecedor">Data nascimento:</label>
+                <input class="form-control input-cinza-claro" type="date" name="nascFornecedor" id="nascFornecedor" value="<?=$dados["nascFornecedor"]?>">
+            </div>
         </div>
-        <div>
-            <label for="celularFornecedor">Celular:</label>
-            <input type="text" name="celularFornecedor" id="celularFornecedor" value="<?=$dados["celularFornecedor"]?>">
-        </div>
-        <div>
-            <label for="emailFornecedor">Email:</label>
-            <input type="text" name="emailFornecedor" id="emailFornecedor" value="<?=$dados["emailFornecedor"]?>">
-        </div>
-        <div>
-            <label for="nascFornecedor">Data nascimento:</label>
-            <input type="date" name="nascFornecedor" id="nascFornecedor" value="<?=$dados["nascFornecedor"]?>">
-        </div>
+
         <hr>
-        <div>
-            <input class="btn btn-primary" type="submit" value="Atualizar" name="btnAtualizar">
-        </div>
-        <div>
-        <a class="btn btn-danger" href="index.php?menuop=excluir-fornecedor&idFornecedor=<?=$dados["idFornecedor"]?>" 
-            onclick="return confirm('Tem certeza que deseja excluir este fornecedor?')">
-            Excluir
-        </a>
+        <div class="row">
+            <div class="col">
+                <input class="btn btn-primary" type="submit" value="Atualizar" name="btnAtualizar">
+            </div>
+            <div class="col">
+            <a class="btn btn-danger" href="index.php?menuop=excluir-fornecedor&idFornecedor=<?=$dados["idFornecedor"]?>"
+                onclick="return confirm('Tem certeza que deseja excluir este fornecedor?')">
+                Excluir
+            </a>
+            </div>
         </div>
 
     </form>

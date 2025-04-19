@@ -13,100 +13,117 @@ $dados = mysqli_fetch_assoc($rs);
 <div>
 
  <!-- Campos comuns -->
-    <form action="index.php?menuop=atualizar-cliente" method="post">
-        <div>
-            <label for="idCliente">ID:</label>
-            <input type="text" name="idCliente" id="idCliente" value="<?=$dados["idCliente"]?>">
+    <form class="p-4" action="index.php?menuop=atualizar-cliente" method="post">
+        
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="idCliente">ID:</label>
+                <input class="form-control input-cinza-claro" type="text" name="idCliente" id="idCliente" value="<?=$dados["idCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="tipoCliente">Tipo: </label>
+                    <select class="form-control input-cinza-claro" name="tipoCliente" id="tipoCliente" required>
+                        <option value="">Selecione...</option>
+                        <option value="PF" <?= ($dados["tipoCliente"] == 'PF') ? 'selected' : '' ?>>Pessoa Física (PF)</option>
+                        <option value="PJ" <?= ($dados["tipoCliente"] == 'PJ') ? 'selected' : '' ?>>Pessoa Jurídica (PJ)</option>
+                    </select>
+            </div>
+            <div class="col">
+                <label class="form-label" for="nomeCliente">Nome:</label>
+                <input class="form-control input-cinza-claro" type="text" name="nomeCliente" id="nomeCliente" value="<?=$dados["nomeCliente"]?>">
+            </div>
         </div>
-        <div>
-            <label for="tipoCliente">Tipo: </label>
-                <select name="tipoCliente" id="tipoCliente" required>
-                    <option value="">Selecione...</option>
-                    <option value="PF" <?= ($dados["tipoCliente"] == 'PF') ? 'selected' : '' ?>>Pessoa Física (PF)</option>
-                    <option value="PJ" <?= ($dados["tipoCliente"] == 'PJ') ? 'selected' : '' ?>>Pessoa Jurídica (PJ)</option>
-    </select>
-                </select>
+
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="logradCliente">Endereço:</label>
+                <input class="form-control input-cinza-claro" type="text" name="logradCliente" id="logradCliente" value="<?=$dados["logradCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="numLogradCliente">Número:</label>
+                <input class="form-control input-cinza-claro" type="number " name="numLogradCliente" id="numLogradCliente" value="<?=$dados["numLogradCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="compLogradCliente">Complemento:</label>
+                <input class="form-control input-cinza-claro" type="text" name="compLogradCliente" id="compLogradCliente" value="<?=$dados["compLogradCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="bairroCliente">Bairro:</label>
+                <input class="form-control input-cinza-claro" type="text" name="bairroCliente" id="bairroCliente" value="<?=$dados["bairroCliente"]?>">
+            </div>
         </div>
-        <div>
-            <label for="nomeCliente">Nome:</label>
-            <input type="text" name="nomeCliente" id="nomeCliente" value="<?=$dados["nomeCliente"]?>">
+
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="cidadeCliente">Cidade:</label>
+                <input class="form-control input-cinza-claro" type="text" name="cidadeCliente" id="cidadeCliente" value="<?=$dados["cidadeCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="ufCliente">UF:</label>
+                <input class="form-control input-cinza-claro" type="text" name="ufCliente" id="ufCliente" value="<?=$dados["ufCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="cepCliente">CEP:</label>
+                <input class="form-control input-cinza-claro" type="text" name="cepCliente" id="cepCliente" value="<?=$dados["cepCliente"]?>">
+            </div>
         </div>
-        <div>
-            <label for="logradCliente">Endereço:</label>
-            <input type="text" name="logradCliente" id="logradCliente" value="<?=$dados["logradCliente"]?>">
-        </div>
-        <div>
-            <label for="numLogradCliente">Número:</label>
-            <input type="number " name="numLogradCliente" id="numLogradCliente" value="<?=$dados["numLogradCliente"]?>">
-        </div>
-        <div>
-            <label for="compLogradCliente">Complemento:</label>
-            <input type="text" name="compLogradCliente" id="compLogradCliente" value="<?=$dados["compLogradCliente"]?>">
-        </div>
-        <div>
-            <label for="bairroCliente">Bairro:</label>
-            <input type="text" name="bairroCliente" id="bairroCliente" value="<?=$dados["bairroCliente"]?>">
-        </div>
-        <div>
-            <label for="cidadeCliente">Cidade:</label>
-            <input type="text" name="cidadeCliente" id="cidadeCliente" value="<?=$dados["cidadeCliente"]?>">
-        </div>
-        <div>
-            <label for="ufCliente">UF:</label>
-            <input type="text" name="ufCliente" id="ufCliente" value="<?=$dados["ufCliente"]?>">
-        </div>
-        <div>
-            <label for="cepCliente">CEP:</label>
-            <input type="text" name="cepCliente" id="cepCliente" value="<?=$dados["cepCliente"]?>">
-        </div>
+
          <!-- Campos pessoa física -->
         <div id="pf-fields" style="display: none;">
-            <div>
-                <label for="cpfCliente">CPF:</label>
-                <input type="text" name="cpfCliente" id="cpfCliente" value="<?=$dados["cpfCliente"]?>">
-            </div>
-            <div>
-                <label for="rgCliente">RG:</label>
-                <input type="text" name="rgCliente" id="rgCliente" value="<?=$dados["rgCliente"]?>">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="cpfCliente">CPF:</label>
+                    <input class="form-control input-cinza-claro" type="text" name="cpfCliente" id="cpfCliente" value="<?=$dados["cpfCliente"]?>">
+                </div>
+                <div class="col">
+                    <label class="form-label" for="rgCliente">RG:</label>
+                    <input class="form-control input-cinza-claro" type="text" name="rgCliente" id="rgCliente" value="<?=$dados["rgCliente"]?>">
+                </div>
             </div>
         </div>
          <!-- Campos pessoa jurisica -->
         <div id="pj-fields" style="display: none;">
-            <div>
-                <label for="cnpjCliente">CNPJ:</label>
-                <input type="text" name="cnpjCliente" id="cnpjCliente" value="<?=$dados["cnpjCliente"]?>">
-            </div>
-            <div>
-                <label for="ieCliente">I.E.:</label>
-                <input type="text" name="ieCliente" id="ieCliente" value="<?=$dados["ieCliente"]?>">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="cnpjCliente">CNPJ:</label>
+                    <input class="form-control input-cinza-claro" type="text" name="cnpjCliente" id="cnpjCliente" value="<?=$dados["cnpjCliente"]?>">
+                </div>
+                <div class="col">
+                    <label class="form-label" for="ieCliente">I.E.:</label>
+                    <input class="form-control input-cinza-claro" type="text" name="ieCliente" id="ieCliente" value="<?=$dados["ieCliente"]?>">
+                </div>
             </div>
         </div>
          <!-- Campos comuns -->
-        <div>
-            <label for="foneCliente">Telefone:</label>
-            <input type="text" name="foneCliente" id="foneCliente" value="<?=$dados["foneCliente"]?>">
-        </div>
-        <div>
-            <label for="celularCliente">Celular:</label>
-            <input type="text" name="celularCliente" id="celularCliente" value="<?=$dados["celularCliente"]?>">
-        </div>
-        <div>
-            <label for="emailCliente">Email:</label>
-            <input type="text" name="emailCliente" id="emailCliente" value="<?=$dados["emailCliente"]?>">
-        </div>
-        <div>
-            <label for="nascCliente">Data nascimento:</label>
-            <input type="date" name="nascCliente" id="nascCliente" value="<?=$dados["nascCliente"]?>">
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="foneCliente">Telefone:</label>
+                <input class="form-control input-cinza-claro" type="text" name="foneCliente" id="foneCliente" value="<?=$dados["foneCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="celularCliente">Celular:</label>
+                <input class="form-control input-cinza-claro" type="text" name="celularCliente" id="celularCliente" value="<?=$dados["celularCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="emailCliente">Email:</label>
+                <input class="form-control input-cinza-claro" type="text" name="emailCliente" id="emailCliente" value="<?=$dados["emailCliente"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="nascCliente">Data nascimento:</label>
+                <input class="form-control input-cinza-claro" type="date" name="nascCliente" id="nascCliente" value="<?=$dados["nascCliente"]?>">
+            </div>
         </div>
         <hr>
-        <div>
-            <input class="btn btn-primary" type="submit" value="Atualizar" name="btnAtualizar">
-        </div>
-        <div>
-        <a class="btn btn-danger" href="index.php?menuop=excluir-cliente&idCliente=<?=$dados["idCliente"]?>" 
-            onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
-            Excluir
-        </a>
+        <div class="row">
+            <div class="col">
+                <input class="btn btn-primary" type="submit" value="Atualizar" name="btnAtualizar">
+            </div>
+            <div class="col">
+            <a class="btn btn-danger" href="index.php?menuop=excluir-cliente&idCliente=<?=$dados["idCliente"]?>"
+                onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                Excluir
+            </a>
+            </div>
         </div>
 
     </form>

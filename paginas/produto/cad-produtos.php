@@ -2,46 +2,53 @@
     <h3>Cadastro de Produtos</h3>
 </header>
 <div>
-    <form action="index.php?menuop=inserir-produto" method="post">
+    <form class="p-4" action="index.php?menuop=inserir-produto" method="post">
         
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="refProduto">Referência:</label>
+                <input class="form-control input-cinza-claro" type="text" name="refProduto" id="refProduto">
+            </div>
+            <div class="col">
+                <label class="form-label" for="descricaoProduto">Descrição:</label>
+                <input class="form-control input-cinza-claro" type="text" name="descricaoProduto" id="descricaoProduto">
+            </div>
+            <div class="rol">
+                <label class="form-label" for="unidProduto">Unid:</label>
+                <input class="form-control input-cinza-claro" type="text" name="unidProduto" id="unidProduto">
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="qtProduto">Quant.:</label>
+                <input class="form-control input-cinza-claro" type="text" name="qtProduto" id="qtProduto">
+            </div>
+            <div class="col">
+                <label class="form-label" for="custoProduto">Preço custo:</label>
+                <input class="form-control input-cinza-claro" type="text" name="custoProduto" id="custoProduto">
+            </div>
+            <div class="col">
+                <label class="form-label" for="vendaProduto">Preço venda:</label>
+                <input class="form-control input-cinza-claro" type="text" name="vendaProduto" id="vendaProduto">
+            </div>
+            <div class="col">
+                <label class="form-label" for="margemProduto">Margem(%):</label>
+                <input class="form-control input-cinza-claro" type="text" name="margemProduto" id="margemProduto">
+            </div>
+        </div>
+
         <div>
-            <label for="refProduto">Referência:</label>
-            <input type="text" name="refProduto" id="refProduto">
+            <label class="form-label" for="obsProduto">Observ.:</label>
+            <input class="form-control input-cinza-claro" type="text" name="obsProduto" id="obsProduto">
         </div>
         <div>
-            <label for="descricaoProduto">Descrição:</label>
-            <input type="text" name="descricaoProduto" id="descricaoProduto">
-        </div>
-        <div>
-            <label for="unidProduto">Unid:</label>
-            <input type="text" name="unidProduto" id="unidProduto">
-        </div>
-        <div>
-            <label for="qtProduto">Quant.:</label>
-            <input type="text" name="qtProduto" id="qtProduto">
-        </div>
-        <div>
-            <label for="custoProduto">Preço custo:</label>
-            <input type="text" name="custoProduto" id="custoProduto">
-        </div>
-        <div>
-            <label for="vendaProduto">Preço venda:</label>
-            <input type="text" name="vendaProduto" id="vendaProduto">
-        </div>
-        <div>
-            <label for="margemProduto">Margem(%):</label>
-            <input type="text" name="margemProduto" id="margemProduto">
-        </div>
-        <div>
-            <label for="obsProduto">Observ.:</label>
-            <input type="text" name="obsProduto" id="obsProduto">
-        </div>
-        <div>
-            <input type="button" value="Foto">
+            <input class="btn btn-secondary mt-2" type="button" value="Foto">
         </div>
         <hr>
         <div>
-            <input type="submit" value="Adicionar" name="btnAdcionar">
+            <input class="btn btn-primary mb-2" type="submit" value="Adicionar" name="btnAdcionar">
         </div>
     </form>
 </div>
