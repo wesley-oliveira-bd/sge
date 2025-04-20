@@ -10,45 +10,55 @@ $dados = mysqli_fetch_assoc($rs);
 <header><h3>Editar Produtos</h3></header>
 
 <div>
-    <form action="index.php?menuop=inserir-produto" method="post">
-        <div>
-            <label for="refProduto">Referência:</label>
-            <input type="text" name="refProduto" id="refProduto" value="<?=$dados["refProduto"]?>">
+    <form class="p-4" action="index.php?menuop=inserir-produto" method="post">
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="refProduto">Referência:</label>
+                <input class="form-control input-cinza-claro" type="text" name="refProduto" id="refProduto" value="<?=$dados["refProduto"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="descricaoProduto">Descrição:</label>
+                <input class="form-control input-cinza-claro" type="text" name="descricaoProduto" id="descricaoProduto" value="<?=$dados["descricaoProduto"]?>">
+            </div>
         </div>
-        <div>
-            <label for="descricaoProduto">Descrição:</label>
-            <input type="text" name="descricaoProduto" id="descricaoProduto" value="<?=$dados["descricaoProduto"]?>">
+
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="unidProduto">Unid:</label>
+                <input class="form-control input-cinza-claro" type="text" name="unidProduto" id="unidProduto" value="<?=$dados["unidProduto"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="qtProduto">Quant.:</label>
+                <input class="form-control input-cinza-claro" type="text" name="qtProduto" id="qtProduto" value="<?=$dados["qtProduto"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="custoProduto">Preço custo(R$):</label>
+                <input class="form-control input-cinza-claro" type="text" name="custoProduto" id="custoProduto" value="<?=$dados["custoProduto"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="vendaProduto">Preço venda(R$):</label>
+                <input class="form-control input-cinza-claro" type="text" name="vendaProduto" id="vendaProduto" value="<?=$dados["vendaProduto"]?>">
+            </div>
+            <div class="col">
+                <label class="form-label" for="margemProduto">Margem(%):</label>
+                <input class="form-control input-cinza-claro" type="text" name="margemProduto" id="margemProduto" value="<?=$dados["margemProduto"]?>">
+            </div>
         </div>
-        <div>
-            <label for="unidProduto">Unid:</label>
-            <input type="text" name="unidProduto" id="unidProduto" value="<?=$dados["unidProduto"]?>">
+
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="obsProduto">Observ.:</label>
+                <input class="form-control input-cinza-claro" type="text" name="obsProduto" id="obsProduto" value="<?=$dados["obsProduto"]?>">
+            </div>
         </div>
+
         <div>
-            <label for="qtProduto">Quant.:</label>
-            <input type="text" name="qtProduto" id="qtProduto" value="<?=$dados["qtProduto"]?>">
+            <input class="btn btn-secondary mt-2" type="button" value="Foto">
         </div>
-        <div>
-            <label for="custoProduto">Preço custo(R$):</label>
-            <input type="text" name="custoProduto" id="custoProduto" value="<?=$dados["custoProduto"]?>">
-        </div>
-        <div>
-            <label for="vendaProduto">Preço venda(R$):</label>
-            <input type="text" name="vendaProduto" id="vendaProduto" value="<?=$dados["vendaProduto"]?>">
-        </div>
-        <div>
-            <label for="margemProduto">Margem(%):</label>
-            <input type="text" name="margemProduto" id="margemProduto" value="<?=$dados["margemProduto"]?>">
-        </div>
-        <div>
-            <label for="obsProduto">Observ.:</label>
-            <input type="text" name="obsProduto" id="obsProduto" value="<?=$dados["obsProduto"]?>">
-        </div>
-        <div>
-            <input type="button" value="Foto">
-        </div>
+
         <hr>
         <div>
-            <input type="submit" value="Adicionar" name="btnAdicionar">
+            <input class="btn btn-primary mb-2" type="submit" value="Adicionar" name="btnAdicionar">
         </div>
     </form>
 </div>
