@@ -2,9 +2,19 @@
     <h3>Fornecedores</h3>
 </header>
 
-<div>
-    <a class="btn btn-primary mb-2" href="index.php?menuop=cad-fornecedor">Cadastrar</a>
-</div>
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-primary mb-2" href="index.php?menuop=cad-fornecedor">Cadastrar</a>
+                </div>
+                <div class="col">
+                        <form action="index.php?menuop=fornecedores" method="post">
+                            <div class="row">
+                                <div class="col"><input class="form-control input-cinza-claro" type="text" name="fornecedoresPesquisa" id="fornecedoresPesquisa"></div>
+                                <div class="col"><input class="btn btn-primary mb-2" type="submit" value="Pesquisar"></div>
+                            </div>
+                        </form>
+                </div>
+            </div>
 
 <table class="table table-sm table-bordered table-hover small">
     <thead>
@@ -30,6 +40,7 @@
     </thead>
     <tbody>
     <?php 
+        $fornecedoresPesquisa = (isset($_POST["fornecedoresPesquisa"]))?$_POST["fornecedoresPesquisa"]:"";
         $sql = "SELECT 
         idFornecedor,
         tipoFornecedor,
@@ -49,7 +60,11 @@
         CONCAT('(', SUBSTRING(celularFornecedor, 1, 2), ')', SUBSTRING(celularFornecedor, 3, 5), '-', SUBSTRING(celularFornecedor, 7, 4)) AS celularFornecedor,
         lower(emailFornecedor) AS emailFornecedor,
         DATE_FORMAT(nascFornecedor, '%d/%m/%Y') AS nascFornecedor
-         FROM tbfornecedores";
+         FROM tbfornecedores WHERE 
+         idFornecedor='{$fornecedoresPesquisa}' OR nomeFornecedor LIKE '%{$fornecedoresPesquisa}%'
+         ";
+
+
         $rs = mysqli_query($conexao, $sql) or dir("Erro ao executar a consulta " . mysqli_error($conexao));
         while ($dados = mysqli_fetch_assoc($rs)) {
             

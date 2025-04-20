@@ -2,9 +2,19 @@
     <h3>Clientes</h3>
 </header>
 
-<div>
-    <a class="btn btn-primary mb-2" href="index.php?menuop=cad-cliente">Cadastrar</a>
-</div>
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-primary mb-2" href="index.php?menuop=cad-cliente">Cadastrar</a>
+            </div>
+            <div class="col">
+                    <form action="index.php?menuop=cliente" method="post">
+                        <div class="row">
+                            <div class="col"><input class="form-control input-cinza-claro" type="text" name="clientesPesquisa" id="clientesPesquisa"></div>
+                            <div class="col"><input class="btn btn-primary mb-2" type="submit" value="Pesquisar"></div>
+                        </div>
+                    </form>
+            </div>
+        </div>
 
 <table class="table table-sm table-bordered table-hover small">
     <thead>
@@ -30,6 +40,7 @@
     </thead>
     <tbody>
     <?php 
+        $clientesPesquisa = (isset($_POST["clientesPesquisa"]))?$_POST["clientesPesquisa"]:"";
         $sql = "SELECT 
         idCliente,
         tipoCliente,
@@ -50,7 +61,9 @@
         lower(emailCliente) AS emailCliente,
         DATE_FORMAT(nascCliente, '%d/%m/%Y') as nascCliente
         
-        FROM tbclientes";
+        FROM tbclientes WHERE 
+        idCliente='{$clientesPesquisa}' OR nomeCliente LIKE '%{$clientesPesquisa}%'
+        ";
         $rs = mysqli_query($conexao, $sql) or dir("Erro ao executar a consulta " . mysqli_error($conexao));
         while ($dados = mysqli_fetch_assoc($rs)) {
             
