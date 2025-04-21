@@ -62,7 +62,7 @@
         lower(emailFornecedor) AS emailFornecedor,
         DATE_FORMAT(nascFornecedor, '%d/%m/%Y') AS nascFornecedor
          FROM tbfornecedores WHERE 
-         idFornecedor='{$fornecedoresPesquisa}' OR nomeFornecedor LIKE '%{$fornecedoresPesquisa}%'
+         idFornecedor='{$fornecedoresPesquisa}' OR nomeFornecedor LIKE '%{$fornecedoresPesquisa}%' ORDER BY nomefornecedor ASC
          ";
 
 

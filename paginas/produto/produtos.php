@@ -53,7 +53,7 @@
         FROM tbprodutos 
         WHERE 
         idProduto='{$produtosPesquisa}' OR 
-        descricaoProduto LIKE '%{$produtosPesquisa}%'
+        descricaoProduto LIKE '%{$produtosPesquisa}%' ORDER BY descricaoProduto ASC
         ";
 
         $rs = mysqli_query($conexao, $sql) or dir("Erro ao executar a consulta " . mysqli_error($conexao));

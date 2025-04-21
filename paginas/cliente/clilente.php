@@ -63,7 +63,7 @@
         DATE_FORMAT(nascCliente, '%d/%m/%Y') as nascCliente
         
         FROM tbclientes WHERE 
-        idCliente='{$clientesPesquisa}' OR nomeCliente LIKE '%{$clientesPesquisa}%'
+        idCliente='{$clientesPesquisa}' OR nomeCliente LIKE '%{$clientesPesquisa}%' ORDER BY nomeCliente ASC
         ";
         $rs = mysqli_query($conexao, $sql) or dir("Erro ao executar a consulta " . mysqli_error($conexao));
         while ($dados = mysqli_fetch_assoc($rs)) {

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
+    
 
     <title>SGE 1.0</title>
 </head>
@@ -22,7 +23,7 @@
             <div class="logo">S</div>
             <div class="textos">
                 <div class="titulo">Sistema de Gerenciamento de Estoque</div>
-                <div class="versao">versão 1.0</div>
+                <div class="versao">versão 1.0 - Desenvolvido por Wesley de Oliveira</div>
             </div>
         </div>
 
@@ -34,6 +35,7 @@
                         <li class="nav-item"><a class="nav-link" href="index.php?menuop=cliente">Clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?menuop=fornecedores">Fornecedores</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?menuop=produtos">Produtos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?menuop=nova-venda">Vendas</a></li>
                     </ul>
                 </div>
             </nav>
@@ -105,6 +107,9 @@
                 case 'atualizar-produto':
                     include("paginas/produto/atualizar-produto.php");
                     break;
+                case 'nova-venda':
+                    include("paginas/vendas/nova-venda.php");
+                    break;
                 default:
                     # code...
                     break;
@@ -116,9 +121,15 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            
+
     <script src="js/jquery.js"></script>
     <script src="js/jquery.form.js"></script>
     <script src="js/upload.js"></script>
+    <script src="js/vendas.js"></script>
     
 
 
