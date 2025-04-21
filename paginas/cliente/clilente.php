@@ -3,17 +3,18 @@
 </header>
 
         <div class="row">
-            <div class="col">
-                <a class="btn btn-primary mb-2" href="index.php?menuop=cad-cliente">Cadastrar</a>
-            </div>
-            <div class="col">
+            
+                <div class="col-1"><a class="btn btn-primary mb-2" href="index.php?menuop=cad-cliente">Cadastrar</a></div>
+            
+            
+                <div class="col-3">
                     <form action="index.php?menuop=cliente" method="post">
-                        <div class="row">
-                            <div class="col"><input class="form-control input-cinza-claro" type="text" name="clientesPesquisa" id="clientesPesquisa"></div>
-                            <div class="col"><input class="btn btn-primary mb-2" type="submit" value="Pesquisar"></div>
-                        </div>
+                            <div class="input-group">
+                                <input class="form-control input-cinza-claro" type="text" name="clientesPesquisa" id="clientesPesquisa">
+                                <input class="btn btn-primary mb-2" type="submit" value="Pesquisar">
+                            </div>
                     </form>
-            </div>
+                </div>
         </div>
 
 <table class="table table-sm table-bordered table-hover small">
