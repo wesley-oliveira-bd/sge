@@ -1,3 +1,4 @@
+
 <header>
     <h3>Cadastro de Produtos</h3>
 </header>
@@ -44,16 +45,9 @@
             <input class="form-control input-cinza-claro" type="text" name="obsProduto" id="obsProduto">
         </div>
         <div>
-            <input class="btn btn-secondary mt-2" type="button" value="Foto">
-        </div>
-        <hr>
-        <div>
-            <input class="btn btn-primary mb-2" type="submit" value="Adicionar" name="btnAdcionar">
+            <input class="btn btn-primary mt-2" type="submit" value="Adicionar" name="btnAdcionar">
         </div>
     </form>
-</div>
-<div>
-    <img width="450" src="./paginas/produto/fotos-produtos/sem_imagem.png" alt="foto sem imagem">
 </div>
 
 <script>

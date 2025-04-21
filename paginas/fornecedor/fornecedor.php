@@ -3,15 +3,16 @@
 </header>
 
             <div class="row">
-                <div class="col">
+                <div class="col-1">
                     <a class="btn btn-primary mb-2" href="index.php?menuop=cad-fornecedor">Cadastrar</a>
                 </div>
-                <div class="col">
+
+                <div class="col-3">
                         <form action="index.php?menuop=fornecedores" method="post">
-                            <div class="row">
-                                <div class="col"><input class="form-control input-cinza-claro" type="text" name="fornecedoresPesquisa" id="fornecedoresPesquisa"></div>
-                                <div class="col"><input class="btn btn-primary mb-2" type="submit" value="Pesquisar"></div>
-                            </div>
+                                <div class="input-group">
+                                    <input class="form-control input-cinza-claro" type="text" name="fornecedoresPesquisa" id="fornecedoresPesquisa">
+                                    <input class="btn btn-primary mb-2" type="submit" value="Pesquisar">
+                                </div>
                         </form>
                 </div>
             </div>

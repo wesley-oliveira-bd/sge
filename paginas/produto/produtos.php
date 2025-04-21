@@ -4,14 +4,14 @@
 
 
     <div class="row">
-        <div class="col">
+        <div class="col-1">
             <a class="btn btn-primary mb-2" href="index.php?menuop=cad-produtos">Cadastrar</a>
         </div>
-        <div class="col">
+        <div class="col-3">
                 <form action="index.php?menuop=produtos" method="post">
-                    <div class="row">
-                        <div class="col"><input class="form-control input-cinza-claro" type="text" name="produtosPesquisa" id="produtosPesquisa"></div>
-                        <div class="col"><input class="btn btn-primary mb-2" type="submit" value="Pesquisar"></div>
+                    <div class="input-group">
+                            <input class="form-control input-cinza-claro" type="text" name="produtosPesquisa" id="produtosPesquisa">
+                            <input class="btn btn-primary mb-2" type="submit" value="Pesquisar">
                     </div>
                 </form>
         </div>
@@ -70,9 +70,18 @@
             <td> <?=$dados["custoProduto"]?> </td>
             <td> <?=$dados["vendaProduto"]?> </td>
             <td> <?=$dados["margemProduto"]?> </td>
-            <td class="text-center"> <a class="btn-outline-primary" href=""> <i class="bi bi-camera"></i></td>
+
+            <td id="linkFoto" class="text-center">
+                <a class="btn btn-sm btn-outline-primary" 
+                href="./paginas/produto/fotos-produtos/<?=$dados['fotoProduto'] != "" ? $dados['idProduto'].'.jpg' : 'sem_imagem.jpg'?>" 
+                onclick="window.open(this.href, 'popup', 'width=600,height=600'); return false;">
+                    <i class="bi bi-camera"></i>
+                </a>
+            </td>
+
+
             <td> <?=$dados["obsProduto"]?> </td>
-            <td class="text-center"> <a class="btn-outline-warning" href="index.php?menuop=editar-produto&idProduto=<?=$dados["idProduto"]?>"><i class="bi bi-pencil-square"></i></a> </td>
+            <td class="text-center"> <a class="btn btn-sm btn-outline-warning" href="index.php?menuop=editar-produto&idProduto=<?=$dados["idProduto"]?>"><i class="bi bi-pencil-square"></i></a> </td>
         </tr>
     <?php } ?>
     </tbody>
