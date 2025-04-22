@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const btnIncluirProduto = document.getElementById('btnIncluirProduto');
     const containerProdutos = document.getElementById('containerProdutos');
     const valorTotalVendaInput = document.getElementById('valorTotalVenda');
@@ -18,15 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function atualizarValorTotalGeral() {
         let totalGeral = 0;
         const valoresTotaisItens = containerProdutos.querySelectorAll('input[name$="[valorTotal]"]');
-        valoresTotaisItens.forEach(function(inputValorTotal) {
+        valoresTotaisItens.forEach(function (inputValorTotal) {
             const valor = parseFloat(inputValorTotal.value) || 0;
             totalGeral += valor;
         });
         valorTotalVendaInput.value = totalGeral.toFixed(2);
-        atualizarValorFinal(); // Atualiza o valor final sempre que o total da venda mudar
+        atualizarValorFinal();
     }
 
-    btnIncluirProduto.addEventListener('click', function() {
+    btnIncluirProduto.addEventListener('click', function () {
         contadorLinhas++;
         const novaLinha = document.createElement('div');
         novaLinha.classList.add('linha-produto');
@@ -79,23 +79,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
         quantidadeInput.addEventListener('input', atualizarValorTotalItem);
         valorUnitarioInput.addEventListener('input', atualizarValorTotalItem);
-        
-        btnExcluir.addEventListener('click', function() {
+
+        btnExcluir.addEventListener('click', function () {
             containerProdutos.removeChild(novaLinha);
             atualizarValorTotalGeral();
         });
-        
-        // Aqui adicionamos o evento do botão de buscar produto
+
         const btnBuscarProduto = novaLinha.querySelector(`#btnBuscarProduto_${contadorLinhas}`);
-        btnBuscarProduto.addEventListener('click', function() {
+        btnBuscarProduto.addEventListener('click', function () {
             const modalProdutos = new bootstrap.Modal(document.getElementById('modalProdutos'));
             modalProdutos.show();
-            const pesquisarDescricaoProdutoModalInput = document.getElementById('pesquisarDescricaoProdutoModal');
+
+            let pesquisarDescricaoProdutoModalInput = document.getElementById('pesquisarDescricaoProdutoModal');
             const resultadoBuscaProdutosDiv = document.getElementById('resultadoBuscaProdutos');
-            
+
             pesquisarDescricaoProdutoModalInput.value = '';
             resultadoBuscaProdutosDiv.innerHTML = '';
-            
+
+            // Substitui input antigo por um novo, para evitar múltiplos eventos
+            const novoInput = pesquisarDescricaoProdutoModalInput.cloneNode(true);
+            pesquisarDescricaoProdutoModalInput.parentNode.replaceChild(novoInput, pesquisarDescricaoProdutoModalInput);
+            pesquisarDescricaoProdutoModalInput = novoInput;
+
             pesquisarDescricaoProdutoModalInput.addEventListener('input', function buscarInputHandler() {
                 const nomePesquisa = this.value.trim();
                 if (nomePesquisa.length >= 3) {
@@ -103,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     resultadoBuscaProdutosDiv.innerHTML = '';
                 }
-            }, { once: true }); // para não acumular vários listeners
-        
+            });
+
             function buscarProdutos(nome) {
                 fetch('./paginas/vendas/buscar-produto.php', {
                     method: 'POST',
@@ -113,16 +118,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: 'nome=' + encodeURIComponent(nome),
                 })
-                .then(response => response.json())
-                .then(data => {
-                    exibirResultadosBusca(data);
-                })
-                .catch(error => {
-                    console.error('Erro ao buscar produtos:', error);
-                    resultadoBuscaProdutosDiv.innerHTML = '<p class="text-danger">Erro ao buscar produtos.</p>';
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        exibirResultadosBusca(data);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar produtos:', error);
+                        resultadoBuscaProdutosDiv.innerHTML = '<p class="text-danger">Erro ao buscar produtos.</p>';
+                    });
             }
-        
+
             function exibirResultadosBusca(produtos) {
                 resultadoBuscaProdutosDiv.innerHTML = '';
                 if (produtos.length > 0) {
@@ -132,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const listItem = document.createElement('li');
                         listItem.classList.add('list-group-item', 'list-group-item-action', 'cursor-pointer');
                         listItem.textContent = `${produto.descricaoProduto} (ID: ${produto.idProduto}, Preço: ${produto.vendaProduto})`;
-                        listItem.addEventListener('click', function() {
+                        listItem.addEventListener('click', function () {
                             novaLinha.querySelector(`#idProduto_${contadorLinhas}`).value = produto.idProduto;
                             novaLinha.querySelector(`#descricaoProduto_${contadorLinhas}`).value = produto.descricaoProduto;
                             novaLinha.querySelector(`#valorUnitario_${contadorLinhas}`).value = produto.vendaProduto;
@@ -147,21 +152,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-        
 
         atualizarValorTotalGeral();
     });
 
-    // Adiciona event listeners para os campos de desconto e acréscimo
     valorDescontoInput.addEventListener('input', atualizarValorFinal);
     valorAcrescimoInput.addEventListener('input', atualizarValorFinal);
 
-    // Chama a função para atualizar o valor final inicialmente
     atualizarValorFinal();
 });
 
-//busca modal clientes
-document.addEventListener('DOMContentLoaded', function() {
+// Modal clientes (sem alterações)
+document.addEventListener('DOMContentLoaded', function () {
     const btnBuscarCliente = document.getElementById('btnBuscarCliente');
     const modalClientes = new bootstrap.Modal(document.getElementById('modalClientes'));
     const pesquisarNomeClienteModalInput = document.getElementById('pesquisarNomeClienteModal');
@@ -170,18 +172,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const nomeClienteInput = document.getElementById('nomeCliente');
     const celularClienteInput = document.getElementById('celularCliente');
 
-    btnBuscarCliente.addEventListener('click', function() {
+    btnBuscarCliente.addEventListener('click', function () {
         modalClientes.show();
-        pesquisarNomeClienteModalInput.value = ''; // Limpa o campo de pesquisa ao abrir o modal
-        resultadoBuscaClientesDiv.innerHTML = ''; // Limpa os resultados anteriores
+        pesquisarNomeClienteModalInput.value = '';
+        resultadoBuscaClientesDiv.innerHTML = '';
     });
 
-    pesquisarNomeClienteModalInput.addEventListener('input', function() {
+    pesquisarNomeClienteModalInput.addEventListener('input', function () {
         const nomePesquisa = this.value.trim();
-        if (nomePesquisa.length >= 3) { // Exemplo: pesquisa após digitar pelo menos 3 caracteres
+        if (nomePesquisa.length >= 3) {
             buscarClientes(nomePesquisa);
-        } else if (nomePesquisa.length < 3) {
-            resultadoBuscaClientesDiv.innerHTML = ''; // Limpa os resultados se a pesquisa for muito curta
+        } else {
+            resultadoBuscaClientesDiv.innerHTML = '';
         }
     });
 
@@ -193,14 +195,14 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: 'nome=' + encodeURIComponent(nome),
         })
-        .then(response => response.json())
-        .then(data => {
-            exibirResultadosBusca(data);
-        })
-        .catch(error => {
-            console.error('Erro ao buscar clientes:', error);
-            resultadoBuscaClientesDiv.innerHTML = '<p class="text-danger">Erro ao buscar clientes.</p>';
-        });
+            .then(response => response.json())
+            .then(data => {
+                exibirResultadosBusca(data);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar clientes:', error);
+                resultadoBuscaClientesDiv.innerHTML = '<p class="text-danger">Erro ao buscar clientes.</p>';
+            });
     }
 
     function exibirResultadosBusca(clientes) {
@@ -212,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const listItem = document.createElement('li');
                 listItem.classList.add('list-group-item', 'list-group-item-action', 'cursor-pointer');
                 listItem.textContent = `${cliente.nomeCliente} (ID: ${cliente.idCliente}, Celular: ${cliente.celularCliente})`;
-                listItem.addEventListener('click', function() {
+                listItem.addEventListener('click', function () {
                     idClienteInput.value = cliente.idCliente;
                     nomeClienteInput.value = cliente.nomeCliente;
                     celularClienteInput.value = cliente.celularCliente;

@@ -5,21 +5,21 @@
     $descricaoProduto = mysqli_real_escape_string($conexao, $_POST["descricaoProduto"]);
     $unidProduto = mysqli_real_escape_string($conexao, $_POST["unidProduto"]);
     $qtProduto = mysqli_real_escape_string($conexao, $_POST["qtProduto"]);
-    $custoProduto = mysqli_real_escape_string($conexao, $_POST["custoProduto"]);
-    $vendaProduto = mysqli_real_escape_string($conexao, $_POST["vendaProduto"]);
-    $margemProduto = mysqli_real_escape_string($conexao, $_POST["margemProduto"]);
+    $custoProduto = str_replace(',', '.', mysqli_real_escape_string($conexao, $_POST["custoProduto"]));
+    $vendaProduto = str_replace(',', '.', mysqli_real_escape_string($conexao, $_POST["vendaProduto"]));
+    $margemProduto = str_replace(',', '.', mysqli_real_escape_string($conexao, $_POST["margemProduto"]));
     $obsProduto = mysqli_real_escape_string($conexao, $_POST["obsProduto"]);
 
     $sql = "INSERT INTO tbprodutos (
-    refProduto,
-    descricaoProduto,
-    unidProduto,
-    qtProduto,
-    custoProduto,
-    vendaProduto,
-    margemProduto,
-    obsProduto)
-    VALUES (
+        refProduto,
+        descricaoProduto,
+        unidProduto,
+        qtProduto,
+        custoProduto,
+        vendaProduto,
+        margemProduto,
+        obsProduto
+    ) VALUES (
         '{$refProduto}',
         '{$descricaoProduto}',
         '{$unidProduto}',
@@ -28,8 +28,7 @@
         '{$vendaProduto}',
         '{$margemProduto}',
         '{$obsProduto}'
-    )
-    ";
+    )";
 
     mysqli_query($conexao, $sql) or die("Erro ao execultar a consulta. " . mysqli_error($conexao));
 
