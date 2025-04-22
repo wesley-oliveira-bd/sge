@@ -10,21 +10,6 @@
             <label class="form-label" for="dataVenda">Data:</label>
             <input class="form-control input-cinza-claro" type="date" name="dataVenda" id="dataVenda">
         </div>
-        <div class="col-3">
-            <label class="form-label" for="formaPgto">Pagamento:</label>
-            <select class="form-control input-cinza-claro" id="formaPgto" name="formaPgto">
-                <option value="">Selecione a forma de pagamento</option>
-                <option value="dinheiro">Dinheiro</option>
-                <option value="pix">Pix</option>
-                <option value="30d">30 dias</option>
-                <option value="30/60d">30/60 dias</option>
-                <option value="30/60/90d">30/60/90 dias</option>
-                <option value="30/60/90/120d">30/60/90/120 dias</option>
-                <option value="cartao_credito">Cartão de Crédito</option>
-                <option value="cartao_debito">Cartão de Débito</option>
-            </select>
-    
-        </div>
     </div>
 
     <div class="row">
@@ -110,6 +95,21 @@
             <label class="form-label" for="valorFinal">Total Final:</label>
             <input class="form-control input-cinza-claro" type="text" id="valorFinal" name="valorFinal" value="0.00" readonly>
         </div>
+    </div>
+    <hr>
+    <div class="col-3">
+            <label class="form-label" for="formaPgto">Pagamento:</label>
+            <select class="form-control input-cinza-claro" id="formaPgto" name="formaPgto">
+                <option value="">Selecione a forma de pagamento</option>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="pix">Pix</option>
+                <option value="30d">30 dias</option>
+                <option value="30/60d">30/60 dias</option>
+                <option value="30/60/90d">30/60/90 dias</option>
+                <option value="30/60/90/120d">30/60/90/120 dias</option>
+                <option value="cartao_credito">Cartão de Crédito</option>
+                <option value="cartao_debito">Cartão de Débito</option>
+            </select>
     </div>
     <hr>
     <div class="row">
