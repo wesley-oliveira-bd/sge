@@ -302,27 +302,29 @@ document.addEventListener("DOMContentLoaded", function () {
             vencimento.setDate(vencimento.getDate() + parcela.dias);
             const vencimentoFormatado = vencimento.toISOString().split('T')[0];
             const valorParcela = parcela.valor.toFixed(2).replace('.', ',');
-
+        
             const row = document.createElement("div");
             row.classList.add("row", "mb-2", "p-4");
-
+        
             const colData = document.createElement("div");
             colData.classList.add("col-5");
             colData.innerHTML = `
                 <label class="form-label">Vencimento ${index + 1}:</label>
                 <input type="date" class="form-control" name="vencimento[]" value="${vencimentoFormatado}">
             `;
-
+        
             const colValor = document.createElement("div");
             colValor.classList.add("col-3");
             colValor.innerHTML = `
                 <label class="form-label">Valor ${index + 1}:</label>
                 <input type="text" class="form-control" name="valorParcela[]" value="${valorParcela}">
             `;
-
+        
             row.appendChild(colData);
             row.appendChild(colValor);
-            containerPagamentos.appendChild(row);
+            document.getElementById('formVenda').appendChild(row);  // Adiciona ao formulário
         });
+        
+
     });
 });

@@ -111,6 +111,9 @@
                     include("paginas/vendas/nova-venda.php");
                     break;
                 default:
+                case 'gravar-venda':
+                    include("paginas/vendas/gravar-venda.php");
+                    break;
                     # code...
                     break;
             }

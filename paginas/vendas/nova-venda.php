@@ -1,6 +1,6 @@
 <header><h3>Nova Venda</h3></header>
 
-<form class="p-4" action="index.php?menuop=gravar-venda" method="post">
+<form class="p-4" id="formVenda" action="index.php?menuop=gravar-venda" method="post">
     <div class="row">
         <div class="col-2">
             <label class="form-label" for="idVenda">ID:</label>
