@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     produtos.forEach(produto => {
                         const listItem = document.createElement('li');
                         listItem.classList.add('list-group-item', 'list-group-item-action', 'cursor-pointer');
-                        listItem.textContent = `${produto.descricaoProduto} (ID: ${produto.idProduto}, Preço: ${produto.vendaProduto})`;
+                        listItem.textContent = `${produto.descricaoProduto} (ID: ${produto.idProduto}, Preço: ${produto.vendaProduto}, Qt: ${produto.qtProduto})`;
                         listItem.addEventListener('click', function () {
                             novaLinha.querySelector(`#idProduto_${contadorLinhas}`).value = produto.idProduto;
                             novaLinha.querySelector(`#descricaoProduto_${contadorLinhas}`).value = produto.descricaoProduto;
@@ -227,4 +227,102 @@ document.addEventListener('DOMContentLoaded', function () {
             resultadoBuscaClientesDiv.innerHTML = '<p class="text-muted">Nenhum cliente encontrado com esse nome.</p>';
         }
     }
+});
+
+
+//bloco de codigo da forma de pagamento
+document.addEventListener("DOMContentLoaded", function () {
+    const formaPgtoSelect = document.getElementById("formaPgto");
+    const dataVendaInput = document.getElementById("dataVenda");
+    const valorFinalInput = document.getElementById("valorFinal");
+    
+    // Cria um container para os campos de pagamento
+    let containerPagamentos = document.createElement("div");
+    containerPagamentos.id = "containerPagamentos";
+    containerPagamentos.className = "row";
+    formaPgtoSelect.parentNode.insertAdjacentElement("afterend", containerPagamentos);
+
+    formaPgtoSelect.addEventListener("change", function () {
+        containerPagamentos.innerHTML = ""; // Limpa os campos anteriores
+
+        const forma = this.value;
+        const dataBase = new Date(dataVendaInput.value);
+        const valorFinal = parseFloat(valorFinalInput.value.replace(',', '.'));
+
+        let parcelas = [];
+
+        switch (forma) {
+            case "pix":
+            case "dinheiro":
+            case "cartao_debito":
+            case "cartao_credito":
+                parcelas = [{
+                    dias: 0,
+                    valor: valorFinal
+                }];
+                break;
+
+            case "30d":
+                parcelas = [{
+                    dias: 30,
+                    valor: valorFinal
+                }];
+                break;
+
+            case "30/60d":
+                parcelas = [
+                    { dias: 30, valor: valorFinal / 2 },
+                    { dias: 60, valor: valorFinal / 2 }
+                ];
+                break;
+
+            case "30/60/90d":
+                parcelas = [
+                    { dias: 30, valor: valorFinal / 3 },
+                    { dias: 60, valor: valorFinal / 3 },
+                    { dias: 90, valor: valorFinal / 3 }
+                ];
+                break;
+
+            case "30/60/90/120d":
+                parcelas = [
+                    { dias: 30, valor: valorFinal / 4 },
+                    { dias: 60, valor: valorFinal / 4 },
+                    { dias: 90, valor: valorFinal / 4 },
+                    { dias: 120, valor: valorFinal / 4 }
+                ];
+                break;
+
+            default:
+                return;
+        }
+
+        parcelas.forEach((parcela, index) => {
+            const vencimento = new Date(dataBase);
+            vencimento.setDate(vencimento.getDate() + parcela.dias);
+            const vencimentoFormatado = vencimento.toISOString().split('T')[0];
+            const valorParcela = parcela.valor.toFixed(2).replace('.', ',');
+
+            const row = document.createElement("div");
+            row.classList.add("row", "mb-2", "p-4");
+
+            const colData = document.createElement("div");
+            colData.classList.add("col-5");
+            colData.innerHTML = `
+                <label class="form-label">Vencimento ${index + 1}:</label>
+                <input type="date" class="form-control" name="vencimento[]" value="${vencimentoFormatado}">
+            `;
+
+            const colValor = document.createElement("div");
+            colValor.classList.add("col-3");
+            colValor.innerHTML = `
+                <label class="form-label">Valor ${index + 1}:</label>
+                <input type="text" class="form-control" name="valorParcela[]" value="${valorParcela}">
+            `;
+
+            row.appendChild(colData);
+            row.appendChild(colValor);
+            containerPagamentos.appendChild(row);
+        });
+    });
 });

@@ -97,7 +97,9 @@
         </div>
     </div>
     <hr>
-    <div class="col-3">
+    <!-- inicio bloco forma de pagamento -->
+    
+    <div id="divFormaPgto" class="col-3">
             <label class="form-label" for="formaPgto">Pagamento:</label>
             <select class="form-control input-cinza-claro" id="formaPgto" name="formaPgto">
                 <option value="">Selecione a forma de pagamento</option>
@@ -111,6 +113,7 @@
                 <option value="cartao_debito">Cartão de Débito</option>
             </select>
     </div>
+    
     <hr>
     <div class="row">
         <div class="col-2"><button class="btn btn-primary" type="submit">Salvar Venda</button></div>

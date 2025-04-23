@@ -9,7 +9,7 @@ if ($conexao->connect_error) {
 $nomePesquisa = isset($_POST['nome']) ? $conexao->real_escape_string($_POST['nome']) : '';
 
 // Consulta SQL para buscar produtos (use LIKE para busca parcial)
-$sql = "SELECT idProduto, descricaoProduto, vendaProduto FROM tbprodutos WHERE descricaoProduto LIKE '%" . $nomePesquisa . "%' LIMIT 10"; // Limite para não retornar muitos resultados
+$sql = "SELECT idProduto, descricaoProduto, vendaProduto, qtProduto FROM tbprodutos WHERE descricaoProduto LIKE '%" . $nomePesquisa . "%' LIMIT 10"; // Limite para não retornar muitos resultados
 
 $result = $conexao->query($sql);
 
