@@ -85,11 +85,11 @@
         </div>
         <div class="col-2">
             <label class="form-label" for="valorDesconto">Desconto:</label>
-            <input class="form-control input-cinza-claro" type="number" id="valorDesconto" name="valorDesconto" value="0.00">
+            <input class="form-control input-cinza-claro" type="number" id="valorDesconto" name="valorDesconto" value="0.00" step="0.01">
         </div>
         <div class="col-2">
             <label class="form-label" for="valorAcrescimo">Acréscimo:</label>
-            <input class="form-control input-cinza-claro" type="number" id="valorAcrescimo" name="valorAcrescimo" value="0.00">
+            <input class="form-control input-cinza-claro" type="number" id="valorAcrescimo" name="valorAcrescimo" value="0.00" step="0.01">
         </div>
         <div class="col-2">
             <label class="form-label" for="valorFinal">Total Final:</label>

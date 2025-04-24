@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $valorAcrescimo = $_POST['valorAcrescimo'];
     $valorFinal = $_POST['valorFinal'];
     $formaPgto = $_POST['formaPgto'];
+    $statusPagamento = 'aberto';
     
     // Iniciar uma transação para garantir que os dados sejam salvos em todas as tabelas
     $conexao->begin_transaction();
@@ -41,14 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // 3. Inserir as parcelas na tabela 'vendas_parcelas'
-        $parcelas = $_POST['parcelas']; // Aqui assumimos que você está enviando as parcelas como um array
-        foreach ($parcelas as $parcela) {
+        //$parcelas = $_POST['parcelas']; // Aqui assumimos que você está enviando as parcelas como um 
+        foreach ($_POST['parcelas'] as $parcela) {
+        //foreach ($parcelas as $parcela) {
             $vencimento = $parcela['vencimento'];
             $valorParcela = $parcela['valorParcela'];
-            $statusPagamento = $parcela['statusPagamento'];
             
-            $sqlParcela = "INSERT INTO tbvendas_parcelas (idVenda, idCliente, nomeCliente, formaPgto, vencimento, valorParcela, statusPagamento) 
-                           VALUES ('$idVenda', '$idCliente', '$nomeCliente', '$formaPgto', '$vencimento', '$valorParcela', '$statusPagamento')";
+            
+            $sqlParcela = "INSERT INTO tbvendas_parcelas (idVenda, idCliente, nomeCliente, formaPgto, vencimento, valorParcela) 
+                           VALUES ('$idVenda', '$idCliente', '$nomeCliente', '$formaPgto', '$vencimento', '$valorParcela')";
             if ($conexao->query($sqlParcela) === FALSE) {
                 throw new Exception("Erro ao inserir parcela: " . $conexao->error);
             }
@@ -64,30 +66,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Verificar se as parcelas foram enviadas
-if (isset($_POST['vencimento']) && isset($_POST['valorParcela'])) {
-    // Processar as parcelas
+// 3. Inserir as parcelas na tabela 'vendas_parcelas'
+if (isset($_POST['vencimento']) && is_array($_POST['vencimento']) && isset($_POST['valorParcela']) && is_array($_POST['valorParcela'])) {
     $vencimentos = $_POST['vencimento'];
     $valoresParcela = $_POST['valorParcela'];
 
-    // Verificar se o número de parcelas é o mesmo
-    if (count($vencimentos) == count($valoresParcela)) {
+    if (count($vencimentos) === count($valoresParcela)) {
         foreach ($vencimentos as $index => $vencimento) {
-            $valorParcela = $valoresParcela[$index];
+            $valorParcela = str_replace(',', '.', $valoresParcela[$index]); // Converte vírgula para ponto para o banco de dados
 
-            // Inserir as parcelas no banco de dados (exemplo)
-            $sqlParcela = "INSERT INTO tbvendas_parcelas (idVenda, vencimento, valorParcela) 
-                           VALUES ('$idVenda', '$vencimento', '$valorParcela')";
-
+            $sqlParcela = "INSERT INTO tbvendas_parcelas (idVenda, idCliente, nomeCliente, formaPgto, vencimento, valorParcela)
+                           VALUES ('$idVenda', '$idCliente', '$nomeCliente', '$formaPgto', '$vencimento', '$valorParcela')";
             if ($conexao->query($sqlParcela) === FALSE) {
                 throw new Exception("Erro ao inserir parcela: " . $conexao->error);
             }
         }
     } else {
-        echo "Erro: A quantidade de vencimentos não corresponde à quantidade de valores das parcelas.";
+        throw new Exception("Erro: A quantidade de vencimentos não corresponde à quantidade de valores das parcelas.");
     }
 } else {
-    echo "Erro: Nenhuma parcela foi enviada.";
+    throw new Exception("Erro: Nenhuma informação de parcela foi enviada.");
 }
 
 ?>
