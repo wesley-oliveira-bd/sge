@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Erro ao inserir venda: " . $conexao->error);
         }
 
-        // 2. Inserir os produtos na tabela 'vendas_produtos'
         foreach ($_POST['produtos'] as $produto) {
             $idProduto = $produto['idProduto'];
             $descricaoProduto = $produto['descricaoProduto'];
@@ -34,12 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $valorUnitario = $produto['valorUnitario'];
             $valorTotal = $produto['valorTotal'];
             
+            // 1. Inserir na tabela tbvendas_produtos
             $sqlProduto = "INSERT INTO tbvendas_produtos (idVenda, idProduto, descricaoProduto, quantidade, valorUnitario, valorTotal)
                            VALUES ('$idVenda', '$idProduto', '$descricaoProduto', '$quantidade', '$valorUnitario', '$valorTotal')";
             if ($conexao->query($sqlProduto) === FALSE) {
                 throw new Exception("Erro ao inserir produto: " . $conexao->error);
             }
+        
+            // 2. Atualizar o estoque na tabela tbprodutos
+            $sqlAtualizaEstoque = "UPDATE tbprodutos 
+                                   SET qtProduto = qtProduto - $quantidade 
+                                   WHERE idProduto = $idProduto";
+            if ($conexao->query($sqlAtualizaEstoque) === FALSE) {
+                throw new Exception("Erro ao atualizar estoque: " . $conexao->error);
+            }
         }
+        
 
         // 3. Inserir as parcelas na tabela 'vendas_parcelas'
         //$parcelas = $_POST['parcelas']; // Aqui assumimos que você está enviando as parcelas como um 

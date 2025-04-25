@@ -99,7 +99,7 @@
     <hr>
     <!-- inicio bloco forma de pagamento -->
     
-    <div id="divFormaPgto" class="col-3">
+    <div class="col-3">
             <label class="form-label" for="formaPgto">Pagamento:</label>
             <select class="form-control input-cinza-claro" id="formaPgto" name="formaPgto">
                 <option value="">Selecione a forma de pagamento</option>

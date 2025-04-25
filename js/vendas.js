@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let containerPagamentos = document.createElement("div");
     containerPagamentos.id = "containerPagamentos";
     containerPagamentos.className = "row";
-    formaPgtoSelect.parentNode.insertAdjacentElement("afterend", containerPagamentos);
+    formaPgtoSelect.parentNode.insertBefore(containerPagamentos, formaPgtoSelect);
 
     formaPgtoSelect.addEventListener("change", function () {
         containerPagamentos.innerHTML = ""; // Limpa os campos anteriores
