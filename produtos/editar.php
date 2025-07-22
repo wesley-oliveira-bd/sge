@@ -6,12 +6,26 @@
   <title>Document</title>
 </head>
 <body>
+      <form action="" method="post">
+        <label for="consulta">Consulta:</label>
+        <input type="text" name="consulta" id="consulta">
+        <input type="submit" value="OK">
+      </form>
   <?php
       include_once '../includes/header.php';
       include_once '../config/conexao.php';
       
-      $exibe = "SELECT * FROM produtos";
-      $sql = mysqli_query($conexao, $exibe) or die("Não foi possível executar consulta." . mysqli_error($conexao));
+      $consulta = isset($_POST["consulta"]) ? $_POST["consulta"] : "";
+
+
+      if ($consulta == ""){
+
+          $exibe = "SELECT * FROM produtos";
+          $sql = mysqli_query($conexao, $exibe) or die("Não foi possível executar consulta." . mysqli_error($conexao));
+      } else {
+          $exibe = "SELECT * FROM produtos WHERE descricao LIKE '%$consulta%' ";
+          $sql = mysqli_query($conexao, $exibe);
+      }
 
       echo "<table border='1'>";
         echo "<tr>
