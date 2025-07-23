@@ -38,6 +38,7 @@
                 <th>Venda</th>
                 <th>Estoque</th>
                 <th>Obs</th>
+                <th>Imagem</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>";
@@ -52,6 +53,7 @@
             echo "<td>{$row['venda']}</td>";
             echo "<td>{$row['estoque']}</td>";
             echo "<td>{$row['obs']}</td>";
+            echo "<td><a href='" . $row['imagem'] . "' target='_blank'>Ver imagem</a></td>";
             echo "<td><a href='editar.php?id=".$row['id']."'>editar</td>";
             echo "<td><a href='excluir.php?id=".$row['id']."'>excluir</td>";
             echo "</tr>";
