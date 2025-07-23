@@ -35,11 +35,12 @@
   <label for="obs">Observ.:</label><br>
   <input type="text" id="obs" name="obs" ><br><br>
 
-  <label for="imagem">Imagem do Produto:</label><br>
-  <input type="file" id="imagem" name="imagem"><br><br>
+  <label for="arquivo">Imagem do Produto:</label><br>
+  <input type="file" id="arquivo" name="arquivo"><br><br>
 
   <button type="submit" name="acao" value="cadastrar">Cadastrar Produto</button>
 </form>
+
 
 
 <script>
