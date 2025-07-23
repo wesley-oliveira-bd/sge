@@ -10,7 +10,7 @@
 
 <h2>Cadastro de Produto</h2>
 
-<form action="controle.php" method="POST" enctype="multipart/form-data">
+<form action="inserir.php" method="POST" enctype="multipart/form-data">
   <label for="referencia">Refer.:</label><br>
   <input type="text" id="referencia" name="referencia"><br><br>
 
