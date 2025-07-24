@@ -38,16 +38,17 @@
 </head>
 <body>
   <?php include_once '../includes/header.php'; ?>
+  
 
 <h2>Cadastro de Clientes</h2>
 
 <form action="inserir.php" method="POST" enctype="multipart/form-data">
 
   <label for="tipo">Tipo:</label><br>
-  <input type="radio" id="fisica" name="tipo" value="Física" checked><br><br>
+  <input type="radio" id="fisica" name="tipo" value="fisica" checked>
   <label for="fisica">Física</label><br>
-  <input type="radio" name="tipo" id="juridica" value="Jurídica"><br><br>
-  <label for="juridica">Jurídica</label>
+  <input type="radio" name="tipo" id="juridica" value="juridica">
+  <label for="juridica">Jurídica</label><br><br>
 
   <label for="nome">Nome:</label><br>
   <input type="text" id="nome" name="nome"><br><br>
@@ -65,7 +66,7 @@
   <input type="text" id="bairro" name="bairro"><br><br>
 
   <label for="cidade">Cidade:</label><br>
-  <input type="text" id="Cidade" name="Cidade"><br><br>
+  <input type="text" id="cidade" name="cidade"><br><br>
 
   <label for="uf">UF:</label><br>
   <input type="text" id="uf" name="uf"><br><br>
@@ -99,17 +100,14 @@
   <label for="limite">Limite:</label><br>
   <input type="number" id="limite" name="limite"><br><br>
 
-  <label for="obs">Obs.:</label><br>
-  <input type="text" id="obs" name="obs"><br><br>
-
   <label for="bloqueado">Bloqueado:</label><br>
-  <input type="radio" id="nao" name="bloqueado" value="nao" checked><br><br>
+  <input type="radio" id="nao" name="bloqueado" value="nao" checked>
   <label for="nao">Não</label><br>
-  <input type="radio" name="bloqueado" id="sim" value="sim"><br><br>
-  <label for="sim">Sim</label>
+  <input type="radio" name="bloqueado" id="sim" value="sim">
+  <label for="sim">Sim</label><br>
 
 
-  <button type="submit" name="acao" value="cadastrar">Cadastrar Produto</button>
+  <button type="submit" name="acao" value="cadastrar">Cadastrar cliente</button>
 </form>
 
 
