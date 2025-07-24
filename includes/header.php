@@ -24,6 +24,14 @@
                 <li><a href="../clientes/controle.php">Listar Clientes</a></li>
             </ul>
             </li>
+
+            <li>
+                <a href="#">Fornecedores</a>
+            <ul>
+                <li><a href="../fornecedores/cadastrar.php">Cadastrar</a></li>
+                <li><a href="../fornecedores/controle.php">Listar Fornecedores</a></li>
+            </ul>
+            </li>
         </ul>
     </nav>
 </body>

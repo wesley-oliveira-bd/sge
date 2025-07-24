@@ -40,7 +40,7 @@
   <?php include_once '../includes/header.php'; ?>
 
 
-<h2>Cadastro de Clientes</h2>
+<h2>Cadastro de Fornecedores</h2>
 
 <form action="inserir.php" method="POST" enctype="multipart/form-data">
 
@@ -107,7 +107,7 @@
   <label for="sim">Sim</label><br>
 
 
-  <button type="submit" name="acao" value="cadastrar">Cadastrar cliente</button>
+  <button type="submit" name="acao" value="cadastrar">Cadastrar fornecedor</button>
 </form>
 
 
