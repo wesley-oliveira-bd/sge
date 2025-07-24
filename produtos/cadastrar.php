@@ -8,7 +8,7 @@
 <body>
   <?php include_once '../includes/header.php'; ?>
 
-<h2>Cadastro de Produto</h2>
+<h2>Cadastro de Produtos</h2>
 
 <form action="inserir.php" method="POST" enctype="multipart/form-data">
   <label for="referencia">Refer.:</label><br>
@@ -36,7 +36,7 @@
   <input type="text" id="obs" name="obs" ><br><br>
 
   <label for="arquivo">Imagem do Produto:</label><br>
-  <input type="file" id="arquivo" name="arquivo"><br><br>
+  <input type="file" id="arquivo" name="arquivo" value="sem_imagem.jpg"><br><br>
 
   <button type="submit" name="acao" value="cadastrar">Cadastrar Produto</button>
 </form>

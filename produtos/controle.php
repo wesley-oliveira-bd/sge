@@ -6,15 +6,19 @@
   <title>Document</title>
 </head>
 <body>
+
+  <?php
+    include_once '../includes/header.php';
+    include_once '../config/conexao.php';
+  ?>
+
       <form action="" method="post">
         <label for="consulta">Consulta:</label>
         <input type="text" name="consulta" id="consulta">
         <input type="submit" value="OK">
       </form>
-  <?php
-      include_once '../includes/header.php';
-      include_once '../config/conexao.php';
-      
+  
+  <?php  
       $consulta = isset($_POST["consulta"]) ? $_POST["consulta"] : "";
 
 
