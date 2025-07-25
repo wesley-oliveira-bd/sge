@@ -32,6 +32,9 @@
                 <li><a href="../fornecedores/controle.php">Listar Fornecedores</a></li>
             </ul>
             </li>
+            <li>
+                <a href="../vendas/vendas.php">Vendas</a>
+            </li>
         </ul>
     </nav>
 </body>
