@@ -45,7 +45,7 @@
         $sql = mysqli_query($conexao, $consulta) or die(mysqli_error($conexao));
         $row = mysqli_fetch_assoc($sql);
     ?>
-<h2>Edicção de Clientes</h2>
+<h2>Edição de Fornecedores</h2>
 
 <form action="salvar_alteracoes.php" method="POST">
   <label for="id">ID:</label><br>
@@ -114,7 +114,7 @@
   <label for="sim">Sim</label><br>
 
 
-  <button type="submit" name="acao" value="cadastrar">Cadastrar cliente</button>
+  <button type="submit" name="alterar" value="cadastrar">Salvar alterações</button>
 </form>
 
 

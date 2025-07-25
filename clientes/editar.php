@@ -114,7 +114,7 @@
   <label for="sim">Sim</label><br>
 
 
-  <button type="submit" name="acao" value="cadastrar">Cadastrar cliente</button>
+  <button type="submit" name="alterar" value="alterar">Salvar alterações</button>
 </form>
 
 
