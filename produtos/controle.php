@@ -11,12 +11,13 @@
     include_once '../includes/header.php';
     include_once '../config/conexao.php';
   ?>
-
+      <h2>Lista de produtos</h2>   
       <form action="" method="post">
         <label for="consulta">Consulta:</label>
         <input type="text" name="consulta" id="consulta">
         <input type="submit" value="OK">
       </form>
+      
   
   <?php  
       $consulta = isset($_POST["consulta"]) ? $_POST["consulta"] : "";
