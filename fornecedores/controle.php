@@ -28,7 +28,7 @@
           $exibe = "SELECT * FROM fornecedores";
           $sql = mysqli_query($conexao, $exibe) or die("Não foi possível executar consulta." . mysqli_error($conexao));
       } else {
-          $exibe = "SELECT * FROM fornecedores WHERE descricao LIKE '%$consulta%' ";
+          $exibe = "SELECT * FROM fornecedores WHERE nome LIKE '%$consulta%' ";
           $sql = mysqli_query($conexao, $exibe);
       }
 
