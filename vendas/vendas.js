@@ -8,23 +8,6 @@ function gerarIdVenda() {
   return Math.floor(Math.random() * 100000);
 }
 
-/*function buscarCliente() {
-  alert("Aqui você pode abrir uma janela/modal para buscar cliente");
-  document.getElementById('cliente_id').value = 123;
-  document.getElementById('cliente_nome').value = "João da Silva";
-  document.getElementById('cliente_celular').value = "(11) 91234-5678";
-}*/
-
-function buscarProduto(callback) {
-  alert("Aqui você pode abrir uma janela/modal para buscar produto");
-  callback({
-    id: 456,
-    descricao: "Pneu Aro 15",
-    unidade: "UN",
-    valor_unitario: 250.00
-  });
-}
-
 function adicionarLinha() {
   buscarProduto(function(produto) {
     const tbody = document.getElementById('corpo-produtos');
@@ -117,15 +100,43 @@ document.addEventListener('input', function(e) {
 
 
 
-$(function() {
-  var clientes = [
-    "joao da silva",
-    "maria de souza",
-    "joaquim teixeira",
-    "antonio de oliveira"
-  ];
-  $("#cliente_nome" ).autocomplete({
-    source: clientes
+$(document).ready(function() {
+  $('#cliente_nome').keyup(function() {
+    let termo = $(this).val();
+
+    if (termo.length >= 2) {
+      $.ajax({
+        url: 'buscar-clientes.php',
+        method: 'POST',
+        data: { termo: termo },
+        success: function(resposta) {
+          $('#resultadoBusca').html(resposta).show();
+        }
+      });
+    } else {
+      $('#resultadoBusca').hide();
+    }
+  });
+
+  // Oculta sugestões ao clicar fora
+  $(document).click(function(e) {
+    if (!$(e.target).closest('#cliente_nome, #resultadoBusca').length) {
+      $('#resultadoBusca').hide();
+    }
   });
 });
 
+
+//Função JS para preencher o input quando clica na sugestão
+function selecionarCliente(nome) {
+  $('#cliente_nome').val(nome);
+  $('#resultadoBusca').hide();
+}
+
+//função para completar os campos id e celular no cabeçalho do cliente
+function selecionarCliente(id, nome, celular) {
+  $('#cliente_nome').val(nome);
+  $('#cliente_id').val(id);
+  $('#cliente_celular').val(celular);
+  $('#resultadoBusca').hide();
+}

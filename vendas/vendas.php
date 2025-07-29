@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="vendas.js"></script>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   
@@ -26,11 +27,12 @@
     <input type="text" name="data_emissao" id="data_emissao" readonly><br>
 
     <label>Cliente:</label>
-    <input type="text" id="cliente_nome" >
-    <input type="hidden" id="cliente_id">
-    <input type="text" id="cliente_celular" readonly>
-    <button type="button" onclick="buscarCliente()">Buscar Cliente</button><br><br>
+    <input type="text" id="cliente_nome" autocomplete="off">
+    <input type="number" id="cliente_id" name="cliente_id" readonly>
+    <input type="text" id="cliente_celular" name="cliente_celular" readonly>
+    <div id="resultadoBusca" style="position: absolute; background: #fff; border: 1px solid #ccc;"></div>
 
+    
     <!-- Tabela de produtos -->
     <table id="tabela-produtos">
       <thead>
