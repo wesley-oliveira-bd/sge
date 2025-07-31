@@ -2,13 +2,9 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="vendas.js"></script>
+  <script src="vendas.js" defer></script>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  
-
   <title>Nova Venda</title>
 </head>
 <body>
@@ -27,14 +23,17 @@
     <input type="text" name="data_emissao" id="data_emissao" readonly><br>
 
     <label>Cliente:</label>
-    <input type="text" id="cliente_nome" autocomplete="off">
+    <input type="text" id="cliente_nome" name="cliente_nome" autocomplete="off">
     <input type="number" id="cliente_id" name="cliente_id" readonly>
     <input type="text" id="cliente_celular" name="cliente_celular" readonly>
-    <div id="resultadoBusca" style="position: absolute; background: #fff; border: 1px solid #ccc;"></div>
+    <div id="resultadoBusca" style="position: absolute; background: #fff; border: 1px solid #ccc;"></div><br><br>
 
-    
-    <!-- Tabela de produtos -->
-    <table id="tabela-produtos">
+
+    <!-- INSERÇÃO DE PRODUTOS --> 
+    <input type="text" name="busca_produto" id="busca_produto" autocomplete="off" placeholder="Digite o nome do produto">
+    <div id="resultadoProdutos"></div>
+
+    <table id="tabela-produtos" border="1">
       <thead>
         <tr>
           <th>ID</th>
@@ -47,14 +46,14 @@
         </tr>
       </thead>
       <tbody id="corpo-produtos">
-        <!-- linhas serão inseridas aqui -->
+      <!-- Produtos serão inseridos aqui -->
       </tbody>
     </table>
-    <button type="button" onclick="adicionarLinha()">Adicionar Produto</button><br><br>
-
-    <!-- Total -->
-    <label>Total da Venda:</label>
-    <input type="text" id="total_venda" readonly><br><br>
+    
+    <br>
+    <label for="total_venda">Total final: </label>
+    <input type="number" name="total_venda" id="total_venda">
+    <br>
 
     <!-- Pagamento -->
     <label>Forma de Pagamento:</label>
@@ -77,3 +76,5 @@
     <button type="button">Pesquisar Vendas</button>
     <button type="button">Imprimir</button>
   </form>
+  </body>
+  </html>

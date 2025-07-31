@@ -1,56 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById('data_emissao').value = new Date().toLocaleDateString('pt-BR');
-  document.getElementById('id_venda').value = gerarIdVenda();
-  adicionarLinha();
+
 });
 
-function gerarIdVenda() {
-  return Math.floor(Math.random() * 100000);
-}
-
-function adicionarLinha() {
-  buscarProduto(function(produto) {
-    const tbody = document.getElementById('corpo-produtos');
-    const linha = document.createElement('tr');
-
-    linha.innerHTML = `
-      <td><input type="text" name="produto_id[]" value="${produto.id}" readonly></td>
-      <td><input type="text" name="descricao[]" value="${produto.descricao}" readonly></td>
-      <td><input type="text" name="unidade[]" value="${produto.unidade}" readonly></td>
-      <td><input type="number" name="quantidade[]" value="1" min="1" onchange="atualizarTotais()"></td>
-      <td><input type="text" name="valor_unitario[]" value="${produto.valor_unitario.toFixed(2)}" readonly></td>
-      <td><input type="text" name="valor_total[]" value="${produto.valor_unitario.toFixed(2)}" readonly></td>
-      <td><button type="button" onclick="this.closest('tr').remove(); atualizarTotais();">Remover</button></td>
-    `;
-    tbody.appendChild(linha);
-    atualizarTotais();
-  });
-}
-
-function atualizarTotais() {
-  let total = 0;
-  const linhas = document.querySelectorAll('#corpo-produtos tr');
-
-  linhas.forEach(tr => {
-    const qtd = parseFloat(tr.querySelector('[name="quantidade[]"]').value) || 0;
-    const unit = parseFloat(tr.querySelector('[name="valor_unitario[]"]').value) || 0;
-    const totalItem = qtd * unit;
-    tr.querySelector('[name="valor_total[]"]').value = totalItem.toFixed(2);
-    total += totalItem;
-  });
-
-  document.getElementById('total_venda').value = total.toFixed(2);
-  gerarParcelas();
-}
 
 function verificaPagamento() {
   const forma = document.getElementById('forma_pagamento').value;
   const div = document.getElementById('div_parcelamento');
   div.style.display = (forma === 'cartao' || forma === 'prazo') ? 'block' : 'none';
 }
-
-
-
 
 function gerarParcelas() {
   const parcelas = parseInt(document.getElementById('parcelas').value || 1);
@@ -59,47 +17,42 @@ function gerarParcelas() {
   const dataEmissaoInput = document.getElementById('data_emissao');
   container.innerHTML = '';
 
-  // Converter data_emissao para objeto Date
-  const [dia, mes, ano] = dataEmissaoInput.value.split('/').map(Number);
-  let dataBase = new Date(ano, mes - 1, dia);
+  document.addEventListener('input', function(e) {
+    if (e.target.id === 'parcelas') {
+      gerarParcelas();
+    }
+  });
 
-  for (let i = 1; i <= parcelas; i++) {
-    const valorParcela = (valorTotal / parcelas).toFixed(2);
+    // Converter data_emissao para objeto Date
+    const [dia, mes, ano] = dataEmissaoInput.value.split('/').map(Number);
+    let dataBase = new Date(ano, mes - 1, dia);
 
-    // Clonar a data base e adicionar 30 dias * (i - 1)
-    let dataVencimento = new Date(dataBase);
-    dataVencimento.setDate(dataBase.getDate() + (30 * i));
+    for (let i = 1; i <= parcelas; i++) {
+      const valorParcela = (valorTotal / parcelas).toFixed(2);
 
-    // Formatar para dd/mm/yyyy
-    const diaVenc = String(dataVencimento.getDate()).padStart(2, '0');
-    const mesVenc = String(dataVencimento.getMonth() + 1).padStart(2, '0');
-    const anoVenc = dataVencimento.getFullYear();
-    const vencimentoFormatado = `${diaVenc}/${mesVenc}/${anoVenc}`;
+      // Clonar a data base e adicionar 30 dias * (i - 1)
+      let dataVencimento = new Date(dataBase);
+      dataVencimento.setDate(dataBase.getDate() + (30 * i));
 
-    const campo = document.createElement('div');
-    campo.innerHTML = `
-      Parcela ${i}: 
-      <input type="text" value="R$ ${valorParcela}" readonly>
-      Vencimento: 
-      <input type="text" value="${vencimentoFormatado}" readonly>
-    `;
-    container.appendChild(campo);
-  }
+      // Formatar para dd/mm/yyyy
+      const diaVenc = String(dataVencimento.getDate()).padStart(2, '0');
+      const mesVenc = String(dataVencimento.getMonth() + 1).padStart(2, '0');
+      const anoVenc = dataVencimento.getFullYear();
+      const vencimentoFormatado = `${diaVenc}/${mesVenc}/${anoVenc}`;
+
+      const campo = document.createElement('div');
+      campo.innerHTML = `
+        Parcela ${i}: 
+        <input type="text" value="R$ ${valorParcela}" readonly>
+        Vencimento: 
+        <input type="text" value="${vencimentoFormatado}" readonly>
+      `;
+      container.appendChild(campo);
+    }
 }
 
 
-
-
-
-
-document.addEventListener('input', function(e) {
-  if (e.target.id === 'parcelas') {
-    gerarParcelas();
-  }
-});
-
-
-
+//busca de clientes
 $(document).ready(function() {
   $('#cliente_nome').keyup(function() {
     let termo = $(this).val();
@@ -127,16 +80,92 @@ $(document).ready(function() {
 });
 
 
-//Função JS para preencher o input quando clica na sugestão
-function selecionarCliente(nome) {
-  $('#cliente_nome').val(nome);
-  $('#resultadoBusca').hide();
-}
-
 //função para completar os campos id e celular no cabeçalho do cliente
 function selecionarCliente(id, nome, celular) {
   $('#cliente_nome').val(nome);
   $('#cliente_id').val(id);
   $('#cliente_celular').val(celular);
   $('#resultadoBusca').hide();
+}
+//FIM BUSCA CLIENTE
+
+// Função para buscar produtos
+    $(document).ready(function () {
+      $('#busca_produto').keyup(function () {
+        let termo = $(this).val();
+
+        if (termo.length >= 2) {
+          $.ajax({
+            url: 'buscar-produtos.php',
+            method: 'POST',
+            data: { termo: termo },
+            success: function (resposta) {
+              $('#resultadoProdutos').html(resposta).show();
+            }
+          });
+        } else {
+          $('#resultadoProdutos').hide();
+        }
+      });
+
+      // Oculta sugestões ao clicar fora
+      $(document).click(function (e) {
+        if (!$(e.target).closest('#resultadoProdutos, #busca_produto').length) {
+          $('#resultadoProdutos').hide();
+        }
+      });
+
+  
+
+
+
+    });
+
+    // Função chamada ao clicar no item da lista
+    function selecionarProdutos(id, descricao, unid, venda) {
+      const tabela = document.getElementById('corpo-produtos');
+      const novaLinha = document.createElement('tr');
+
+      novaLinha.innerHTML = `
+        <td>${id}</td>
+        <td>${descricao}</td>
+        <td>${unid}</td>
+        <td><input type="number" value="1" min="1" onchange="atualizarTotal(this)"></td>
+        <td><input type="number" value="${venda}" step="0.01" onchange="atualizarTotal(this)"></td>
+        <td class="total">${parseFloat(venda).toFixed(2)}</td>
+        <td><button onclick="this.closest('tr').remove()">Remover</button></td>
+      `;
+
+      tabela.appendChild(novaLinha);
+      atualizarTotais();
+
+
+      //Limpa o campo e esconde sugestões
+      document.getElementById('busca_produto').value = '';
+      document.getElementById('resultadoProdutos').innerHTML = '';
+    }
+
+    // Atualiza valor total da linha
+    function atualizarTotal(campo) {
+      const linha = campo.closest('tr');
+      const qtd = linha.querySelector('td:nth-child(4) input').value;
+      const unit = linha.querySelector('td:nth-child(5) input').value;
+      const total = linha.querySelector('.total');
+
+      total.textContent = (parseFloat(qtd) * parseFloat(unit)).toFixed(2);
+      atualizarTotais();
+
+    }
+
+    function atualizarTotais() {
+  const linhas = document.querySelectorAll('#corpo-produtos tr');
+  let total = 0;
+
+  linhas.forEach(linha => {
+    const qtd = parseFloat(linha.querySelector('td:nth-child(4) input').value) || 0;
+    const unit = parseFloat(linha.querySelector('td:nth-child(5) input').value) || 0;
+    total += qtd * unit;
+  });
+
+  document.getElementById('total_venda').value = total.toFixed(2);
 }
