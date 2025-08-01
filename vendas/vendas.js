@@ -122,22 +122,41 @@ function selecionarCliente(id, nome, celular) {
     });
 
     // Função chamada ao clicar no item da lista
-    function selecionarProdutos(id, descricao, unid, venda) {
+   function selecionarProdutos(id, descricao, unid, venda) {
       const tabela = document.getElementById('corpo-produtos');
       const novaLinha = document.createElement('tr');
 
       novaLinha.innerHTML = `
-        <td>${id}</td>
-        <td>${descricao}</td>
-        <td>${unid}</td>
-        <td><input type="number" value="1" min="1" onchange="atualizarTotal(this)"></td>
-        <td><input type="number" value="${venda}" step="0.01" onchange="atualizarTotal(this)"></td>
-        <td class="total">${parseFloat(venda).toFixed(2)}</td>
-        <td><button onclick="this.closest('tr').remove()">Remover</button></td>
+        <td>
+          ${id}
+          <input type="hidden" name="produto_id[]" value="${id}">
+        </td>
+        <td>
+          ${descricao}
+          <input type="hidden" name="descricao[]" value="${descricao}">
+        </td>
+        <td>
+          ${unid}
+          <input type="hidden" name="unidade[]" value="${unid}">
+        </td>
+        <td>
+          <input type="number" name="qtd[]" value="1" min="1" onchange="atualizarTotal(this)">
+        </td>
+        <td>
+          <input type="number" name="valor_unit[]" value="${venda}" step="0.01" onchange="atualizarTotal(this)">
+        </td>
+        <td class="total">
+          ${parseFloat(venda).toFixed(2)}
+        </td>
+        <td>
+          <button type="button" onclick="this.closest('tr').remove()">Remover</button>
+        </td>
       `;
 
       tabela.appendChild(novaLinha);
       atualizarTotais();
+    
+
 
 
       //Limpa o campo e esconde sugestões

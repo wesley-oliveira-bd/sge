@@ -12,6 +12,7 @@
   <?php include '../config/conexao.php'; ?>
   <a href="../produtos/cadastrar.php">Cadastrar produto</a>
   <a href="../clientes/cadastrar.php">Cadastrar cliente</a> 
+  
   <h2>Nova Venda</h2>
   <button type="submit" id="btnNovaVenda">Nova Venda</button><br>
   <br>
