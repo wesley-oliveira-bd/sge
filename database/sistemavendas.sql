@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/08/2025 às 02:46
+-- Tempo de geração: 01/08/2025 às 03:09
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -137,8 +137,6 @@ CREATE TABLE `vendas` (
   `id` int(11) NOT NULL,
   `data_emissao` date DEFAULT NULL,
   `cliente_id` int(11) DEFAULT NULL,
-  `cliente_nome` varchar(100) DEFAULT NULL,
-  `cliente_celular` varchar(20) DEFAULT NULL,
   `total_venda` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -146,8 +144,9 @@ CREATE TABLE `vendas` (
 -- Despejando dados para a tabela `vendas`
 --
 
-INSERT INTO `vendas` (`id`, `data_emissao`, `cliente_id`, `cliente_nome`, `cliente_celular`, `total_venda`) VALUES
-(10, '2025-07-31', 1, 'WESLEY DE OLIVEIRA', '37988260767', 285.00);
+INSERT INTO `vendas` (`id`, `data_emissao`, `cliente_id`, `total_venda`) VALUES
+(10, '2025-07-31', 1, 285.00),
+(11, '2025-07-31', 3, 575.00);
 
 --
 -- Índices para tabelas despejadas
@@ -203,7 +202,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `vendas`
 --
 ALTER TABLE `vendas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
