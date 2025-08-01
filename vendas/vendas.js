@@ -169,3 +169,35 @@ function selecionarCliente(id, nome, celular) {
 
   document.getElementById('total_venda').value = total.toFixed(2);
 }
+
+
+//ABERTURA DE NOVA VENDA
+$(document).ready(function () {
+  $('#btnNovaVenda').on('click', function () {
+    $.ajax({
+      url: 'nova-venda.php',
+      type: 'POST',
+      success: function (id) {
+        if (!isNaN(id)) {
+          $('#id_venda').val(id);
+
+          // Formata a data para dd/mm/yyyy
+          const hoje = new Date();
+          const dia = String(hoje.getDate()).padStart(2, '0');
+          const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+          const ano = hoje.getFullYear();
+          const dataFormatada = `${dia}/${mes}/${ano}`;
+
+          $('#data_emissao').val(dataFormatada);
+          $('#conteudo-venda').slideDown();
+        } else {
+          alert('Erro ao criar nova venda.');
+        }
+      },
+      error: function () {
+        alert('Erro na comunicação com o servidor.');
+      }
+    });
+  });
+});
+
