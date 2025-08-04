@@ -83,7 +83,7 @@
       </select><br>
       <div id="div_parcelamento" class="parcelamento">
         <label>Nº de Parcelas:</label>
-        <input type="number" id="parcelas" min="1" value="1" onchange="gerarParcelas()">
+        <input type="number" name="parcelas" id="parcelas" min="1" value="1" onchange="gerarParcelas()">
         <div id="campos_parcelas"></div>
       </div><br>
       <div id="campo_parcelas"></div>

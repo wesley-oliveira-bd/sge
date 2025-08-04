@@ -23,10 +23,19 @@
 
       if ($consulta == ""){
 
-          $exibe = "SELECT * FROM vendaprodutos";
+          $exibe = "SELECT *, produtos.descricao AS descricao_produto, clientes.nome AS nome_cliente
+                    FROM vendaprodutos
+                    INNER JOIN produtos ON vendaprodutos.produto_id = produtos.id
+                    INNER JOIN clientes ON vendaprodutos.cliente_id = clientes.id";  
+
+
+
           $sql = mysqli_query($conexao, $exibe) or die("Não foi possível executar consulta." . mysqli_error($conexao));
       } else {
-          $exibe = "SELECT * FROM vendaprodutos WHERE produto_id LIKE '%$consulta%' ";
+          $exibe = "SELECT *, produtos.descricao AS descricao_produto 
+                    FROM vendaprodutos
+                    INNER JOIN produtos ON vendaprodutos.produto_id = produtos.id
+                    WHERE produtos.descricao LIKE '%$consulta%'";
           $sql = mysqli_query($conexao, $exibe);
       }
 
@@ -34,8 +43,8 @@
         echo "<tr>
                 <th>ID</th>
                 <th>Id da venda</th>
-                <th>Id do cliente</th>
-                <th>Id do produto</th>
+                <th>Cliente</th>
+                <th>Descrição</th>
                 <th>Quant.</th>
                 <th>Valor unit.</th>
                 <th>Valor total</th>
@@ -45,8 +54,8 @@
             echo "<tr>";
             echo "<td>{$row['id']}</td>";
             echo "<td>{$row['venda_id']}</td>";
-            echo "<td>{$row['cliente_id']}</td>";
-            echo "<td>{$row['produto_id']}</td>";
+            echo "<td>{$row['nome_cliente']}</td>";
+            echo "<td>{$row['descricao_produto']}</td>";
             echo "<td>{$row['quant_venda']}</td>";
             echo "<td>{$row['valor_unit']}</td>";
             echo "<td>{$row['valor_total']}</td>";

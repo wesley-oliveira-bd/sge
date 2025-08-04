@@ -43,9 +43,9 @@ function gerarParcelas() {
       const campo = document.createElement('div');
       campo.innerHTML = `
         Parcela ${i}: 
-        <input type="text" value="R$ ${valorParcela}" readonly>
+        <input type="text" name="valorParcela[]" value="R$ ${valorParcela}" readonly>
         Vencimento: 
-        <input type="text" value="${vencimentoFormatado}" readonly>
+        <input type="text" name="vencimentoFormatado[]" value="${vencimentoFormatado}" readonly>
       `;
       container.appendChild(campo);
     }
