@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function verificaPagamento() {
   const forma = document.getElementById('forma_pagamento').value;
   const div = document.getElementById('div_parcelamento');
+  const statusInput = document.getElementById('status');
   div.style.display = (forma === 'cartao' || forma === 'prazo') ? 'block' : 'none';
   if (forma === 'dinheiro' || forma === 'pix') {
     statusInput.value = 'pago';
@@ -182,18 +183,20 @@ function selecionarCliente(id, nome, celular) {
 
     }
 
-    function atualizarTotais() {
-  const linhas = document.querySelectorAll('#corpo-produtos tr');
-  let total = 0;
+    /*function atualizarTotais() {
+      const linhas = document.querySelectorAll('#corpo-produtos tr');
+      let total = 0;
 
-  linhas.forEach(linha => {
-    const qtd = parseFloat(linha.querySelector('td:nth-child(4) input').value) || 0;
-    const unit = parseFloat(linha.querySelector('td:nth-child(5) input').value) || 0;
-    total += qtd * unit;
-  });
+      linhas.forEach(linha => {
+        const qtd = parseFloat(linha.querySelector('td:nth-child(4) input').value) || 0;
+        const unit = parseFloat(linha.querySelector('td:nth-child(5) input').value) || 0;
+        total += qtd * unit;
+      });
 
-  document.getElementById('total_venda').value = total.toFixed(2);
-}
+      document.getElementById('total_venda').value = total.toFixed(2);
+    }*/
+    
+  
 
 
 //ABERTURA DE NOVA VENDA
@@ -226,3 +229,40 @@ $(document).ready(function () {
   });
 });
 
+// Função principal que calcula o total final com desconto e acréscimo
+function atualizarTotalFinal() {
+  const linhas = document.querySelectorAll('#corpo-produtos tr');
+  let total = 0;
+
+  linhas.forEach(linha => {
+    const qtd = parseFloat(linha.querySelector('td:nth-child(4) input').value) || 0;
+    const unit = parseFloat(linha.querySelector('td:nth-child(5) input').value) || 0;
+    total += qtd * unit;
+  });
+
+  const desconto = parseFloat(document.getElementById('desconto_venda').value) || 0;
+  const acrescimo = parseFloat(document.getElementById('acrescimo_venda').value) || 0;
+
+  const totalFinal = total - desconto + acrescimo;
+
+  document.getElementById('total_venda').value = totalFinal.toFixed(2);
+}
+
+// Alias da função antiga para manter compatibilidade
+function atualizarTotais() {
+  atualizarTotalFinal();
+}
+
+// Eventos para reagir às mudanças nos inputs de desconto e acréscimo
+document.addEventListener('DOMContentLoaded', function () {
+  const descontoInput = document.getElementById('desconto_venda');
+  const acrescimoInput = document.getElementById('acrescimo_venda');
+
+  if (descontoInput) {
+    descontoInput.addEventListener('input', atualizarTotalFinal);
+  }
+
+  if (acrescimoInput) {
+    acrescimoInput.addEventListener('input', atualizarTotalFinal);
+  }
+});

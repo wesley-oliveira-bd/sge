@@ -2,30 +2,32 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include '../config/conexao.php';
 
-    $id = $_POST["id_venda"] ?? null;
-    $data_emissao = $_POST["data_emissao"] ?? null;
-    $cliente_id = $_POST["cliente_id"] ?? null;
-    $total_venda = $_POST["total_venda"] ?? 0;
-    $total_parcelas = $_POST['total_parcelas'] ?? [];
+    $id = $_POST["id_venda"];
+    $data_emissao = $_POST["data_emissao"] ;
+    $cliente_id = $_POST["cliente_id"] ;
+    $acrescimo_venda = $_POST['acrescimo_venda'];
+    $desconto_venda = $_POST['desconto_venda'];
+    $total_venda = $_POST["total_venda"] ;
+    $total_parcelas = $_POST['total_parcelas'] ;
     $forma_pgto = $_POST['forma_pgto'];
     $status = $_POST['status'];
 
     // Produtos (evita erro se não vierem do POST)
-    $produto_ids = $_POST['produto_id'] ?? [];
-    $descricoes  = $_POST['descricao'] ?? [];
-    $unidades    = $_POST['unidade'] ?? [];
-    $quantidades = $_POST['qtd'] ?? [];
-    $valores     = $_POST['valor_unit'] ?? [];
+    $produto_ids = $_POST['produto_id'];
+    $descricoes  = $_POST['descricao'];
+    $unidades    = $_POST['unidade'];
+    $quantidades = $_POST['qtd'];
+    $valores     = $_POST['valor_unit'];
 
     //arrays do parcelamento
-    $numeroParcelas = $_POST['numeroParcela'] ?? [];
-    $vencimentos    = $_POST['vencimentoFormatado'] ?? [];
-    $parcelas = $_POST['valorParcela'] ?? [];
+    $numeroParcelas = $_POST['numeroParcela'];
+    $vencimentos    = $_POST['vencimentoFormatado'];
+    $parcelas = $_POST['valorParcela'];
 
 
 
     // Atualiza a venda principal
-    $sql_venda = "UPDATE vendas SET cliente_id='$cliente_id', total_venda='$total_venda' WHERE id='$id'";
+    $sql_venda = "UPDATE vendas SET cliente_id='$cliente_id', desconto_venda='$desconto_venda', acrescimo_venda='$acrescimo_venda',  total_venda='$total_venda' WHERE id='$id'";
     if (mysqli_query($conexao, $sql_venda)) {
 
         // (Opcional) Remove os itens antigos da venda, se estiver editando

@@ -11,7 +11,7 @@
         include_once '../config/conexao.php';
     ?>
 
-    <h2>Lista de vendas</h2>   
+    <h2>Lista de produtos</h2>   
     <form action="" method="post">
         <label for="consulta">Consulta:</label>
         <input type="text" name="consulta" id="consulta">
@@ -22,22 +22,36 @@
 
 
       if ($consulta == ""){
+                $exibe = "SELECT 
+                            vendaprodutos.id AS id_vendaproduto,
+                            vendaprodutos.venda_id,
+                            clientes.nome AS nome_cliente,
+                            produtos.descricao AS descricao_produto,
+                            vendaprodutos.quant_venda,
+                            vendaprodutos.valor_unit,
+                            vendaprodutos.valor_total
+                        FROM vendaprodutos
+                        INNER JOIN produtos ON vendaprodutos.produto_id = produtos.id
+                        INNER JOIN clientes ON vendaprodutos.cliente_id = clientes.id
+                        ORDER BY vendaprodutos.id ASC";
+            } else {
+                $exibe = "SELECT 
+                            vendaprodutos.id AS id_vendaproduto,
+                            vendaprodutos.venda_id,
+                            clientes.nome AS nome_cliente,
+                            produtos.descricao AS descricao_produto,
+                            vendaprodutos.quant_venda,
+                            vendaprodutos.valor_unit,
+                            vendaprodutos.valor_total
+                        FROM vendaprodutos
+                        INNER JOIN produtos ON vendaprodutos.produto_id = produtos.id
+                        INNER JOIN clientes ON vendaprodutos.cliente_id = clientes.id
+                        WHERE produtos.descricao LIKE '%$consulta%' ";
+            }
 
-          $exibe = "SELECT *, produtos.descricao AS descricao_produto, clientes.nome AS nome_cliente
-                    FROM vendaprodutos
-                    INNER JOIN produtos ON vendaprodutos.produto_id = produtos.id
-                    INNER JOIN clientes ON vendaprodutos.cliente_id = clientes.id";  
+        $sql = mysqli_query($conexao, $exibe);
 
 
-
-          $sql = mysqli_query($conexao, $exibe) or die("Não foi possível executar consulta." . mysqli_error($conexao));
-      } else {
-          $exibe = "SELECT *, produtos.descricao AS descricao_produto 
-                    FROM vendaprodutos
-                    INNER JOIN produtos ON vendaprodutos.produto_id = produtos.id
-                    WHERE produtos.descricao LIKE '%$consulta%'";
-          $sql = mysqli_query($conexao, $exibe);
-      }
 
       echo "<table border='1'>";
         echo "<tr>
@@ -52,7 +66,7 @@
             </tr>";
         while ($row = mysqli_fetch_assoc($sql)) {
             echo "<tr>";
-            echo "<td>{$row['id']}</td>";
+            echo "<td>{$row['id_vendaproduto']}</td>";
             echo "<td>{$row['venda_id']}</td>";
             echo "<td>{$row['nome_cliente']}</td>";
             echo "<td>{$row['descricao_produto']}</td>";

@@ -1,6 +1,7 @@
 <?php
 include_once '../includes/header.php';
 include_once '../config/conexao.php';
+date_default_timezone_set('America/Sao_Paulo');
 ?>
 
 <h2>Lista de vendas</h2>   
@@ -11,7 +12,8 @@ include_once '../config/conexao.php';
 </form>
 
 <?php  
-$consulta = $_POST["consulta"] ?? "";
+$consulta = isset($_POST['consulta']) ? $_POST['consulta'] : '';
+
 
 if ($consulta == "") {
     $exibe = "SELECT v.*, c.nome AS nome_cliente 
@@ -31,6 +33,8 @@ echo "<tr>
         <th>ID</th>
         <th>Data de Emissão</th>
         <th>Cliente</th>
+        <th>Desconto</th>
+        <th>Acréscimo</th>
         <th>Valor da venda</th>
         <th>Editar</th>
         <th>Excluir</th>
@@ -41,6 +45,8 @@ while ($row = mysqli_fetch_assoc($sql)) {
     echo "<td>{$row['id']}</td>";
     echo "<td>" . date("d/m/Y", strtotime($row['data_emissao'])) . "</td>";
     echo "<td>{$row['nome_cliente']}</td>";
+    echo "<td>{$row['desconto_venda']}</td>";
+    echo "<td>{$row['acrescimo_venda']}</td>";
     echo "<td>{$row['total_venda']}</td>";
     echo "<td><a href='editar.php?id={$row['id']}'>editar</a></td>";
     echo "<td><a href='excluir.php?id={$row['id']}'>excluir</a></td>";

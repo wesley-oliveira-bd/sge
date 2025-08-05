@@ -1,0 +1,51 @@
+/* Estiliza o menu principal */
+#header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Coloca os <li> lado a lado */
+  background-color: #333;
+}
+
+/* Estiliza os itens do menu principal */
+#header > ul > li {
+  position: relative; /* Necessário para posicionar os submenus */
+}
+
+/* Estiliza os links principais */
+#header > ul > li > a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Submenus (escondidos por padrão) */
+#header ul ul {
+  display: none;
+  position: absolute;
+  top: 100%; /* Posiciona logo abaixo do item principal */
+  left: 0;
+  background-color: #444;
+  min-width: 180px;
+  z-index: 1000;
+}
+
+/* Mostra submenu ao passar o mouse */
+#header ul li:hover > ul {
+  display: block;
+}
+
+/* Estiliza itens dos submenus */
+#header ul ul li a {
+  padding: 10px 15px;
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+
+/* Hover nos links */
+#header a:hover {
+  background-color: #555;
+}

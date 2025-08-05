@@ -9,13 +9,13 @@
 </head>
 <body>
 
-  <?php include '../config/conexao.php'; ?>
-  <a href="../produtos/cadastrar.php">Cadastrar produto</a>
-  <a href="../clientes/cadastrar.php">Cadastrar cliente</a> 
-  <a href="../vendas/controle.php">Lista de vendas</a>
-  <a href="../vendas/vendas-produtos.php">Vendas por produtos</a>
+  <?php 
+    include '../config/conexao.php';
+    include '../includes/header.php';
+  ?>
   
-  <h2>Nova Venda</h2>
+  
+  <br>
   <button type="submit" id="btnNovaVenda">Nova Venda</button><br>
   <br>
 
@@ -49,7 +49,7 @@
     
       <!-- INSERÇÃO DE PRODUTOS -->
       <label for="">Produto:</label>
-      <input type="text" name="busca_produto" id="busca_produto" autocomplete="off" placeholder="Digite o nome do produto">
+      <input type="text" name="busca_produto" id="busca_produto" autocomplete="off" placeholder="Digite o nome do produto"><br>
       <div id="resultadoProdutos"></div>
       <table id="tabela-produtos" border="1">
         <thead>
@@ -69,8 +69,13 @@
       </table>
     
       <br>
+      <label for="desconto_venda">Desconto:</label>
+      <input type="number" name="desconto_venda" id="desconto_venda" value="0.00" step="0.01" min="0">
+      <label for="acrescimo_venda">Acréscimo:</label>
+      <input type="number" name="acrescimo_venda" id="acrescimo_venda" value="0.00" step="0.01" min="0">
       <label for="total_venda">Total final:   </label>
-      <input type="number" name="total_venda" id="total_venda" value="0.00">
+      <input type="number" name="total_venda" id="total_venda" value="0.00" step="0.01" min="0">
+      
       <br><br>
       <!-- Pagamento -->
       <label>Forma de Pagamento:</label>
@@ -87,9 +92,9 @@
         <div id="campos_parcelas"></div>
       </div><br>
       <div id="campo_parcelas"></div>
-      <div class="status">
-        <input type="text" name="status" id="status" readonly>
-      </div>
+      
+      <input type="text" name="status" id="status">
+      
       <!-- Botões -->
       <button type="submit" name="salvar" value="salvar">Salvar</button>
       <button type="button">Pesquisar Vendas</button>
