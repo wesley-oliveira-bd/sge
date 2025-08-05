@@ -8,6 +8,13 @@ function verificaPagamento() {
   const forma = document.getElementById('forma_pagamento').value;
   const div = document.getElementById('div_parcelamento');
   div.style.display = (forma === 'cartao' || forma === 'prazo') ? 'block' : 'none';
+  if (forma === 'dinheiro' || forma === 'pix') {
+    statusInput.value = 'pago';
+  } else if (forma === 'prazo' || forma === 'cartao') {
+    statusInput.value = 'aberto';
+  } else {
+    statusInput.value = ''; // caso a opção não seja reconhecida
+  }
 }
 
 function gerarParcelas() {
@@ -42,9 +49,8 @@ function gerarParcelas() {
 
       const campo = document.createElement('div');
       campo.innerHTML = `
-        Parcela ${i}: 
-        <input type="text" name="valorParcela[]" value="R$ ${valorParcela}" readonly>
-        Vencimento: 
+        <input type="number" name="numeroParcela[]" value="${i}" readonly>
+        <input type="text" name="valorParcela[]" value="${valorParcela}" readonly>
         <input type="text" name="vencimentoFormatado[]" value="${vencimentoFormatado}" readonly>
       `;
       container.appendChild(campo);

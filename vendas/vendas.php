@@ -74,7 +74,7 @@
       <br><br>
       <!-- Pagamento -->
       <label>Forma de Pagamento:</label>
-      <select id="forma_pagamento" name="forma_pagamento" onchange="verificaPagamento()">
+      <select id="forma_pagamento" name="forma_pgto" onchange="verificaPagamento()">
         <option value="">Selecione</option>
         <option value="dinheiro">Dinheiro</option>
         <option value="pix">Pix</option>
@@ -83,10 +83,13 @@
       </select><br>
       <div id="div_parcelamento" class="parcelamento">
         <label>Nº de Parcelas:</label>
-        <input type="number" name="parcelas" id="parcelas" min="1" value="1" onchange="gerarParcelas()">
+        <input type="number" name="total_parcelas" id="parcelas" min="1" value="1" onchange="gerarParcelas()">
         <div id="campos_parcelas"></div>
       </div><br>
       <div id="campo_parcelas"></div>
+      <div class="status">
+        <input type="text" name="status" id="status" readonly>
+      </div>
       <!-- Botões -->
       <button type="submit" name="salvar" value="salvar">Salvar</button>
       <button type="button">Pesquisar Vendas</button>
