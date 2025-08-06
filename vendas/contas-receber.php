@@ -50,7 +50,10 @@
                 <th>Tot.Parc.</th>
                 <th>Valor</th>
                 <th>Vencimento</th>
+                <th>Valor pago</th>
+                <th>Data pgto</th>
                 <th>Forma</th>
+                <th>Restante</th>
                 <th>Status</th>
                 <th>Editar</th>
                 <th>Excluir</th>
@@ -66,8 +69,11 @@
             echo "<td>de</td>";
             echo "<td>{$row['total_parcelas']}</td>";
             echo "<td>{$row['valor_parcela']}</td>";
-            echo "<td>" . date("d/m/Y", strtotime($row['vencimento'])) . "</td>";    
+            echo "<td>" . date("d/m/Y", strtotime($row['vencimento'])) . "</td>"; 
+            echo "<td> {$row['valor_pago']} </td>";
+            echo "<td> {$row['data_pgto']} </td>";
             echo "<td>{$row['forma_pgto']}</td>";
+            echo "<td>{$row['resto_pgto']}</td>";
             echo "<td>{$row['status']}</td>";
             echo "<td><a href='editar.php?id=".$row['id']."'>editar</td>";
             echo "<td><a href='excluir.php?id=".$row['id']."'>excluir</td>";    

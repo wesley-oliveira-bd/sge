@@ -47,6 +47,7 @@
                 <a href="#">Contas a receber</a>
                 <ul>
                     <li><a href="/sge/vendas/contas-receber.php">Lista contas</a></li>
+                    <li><a href="/sge/contas_receber/cadastrar.php">Nova conta</a></li>
                 </ul>
             </li>
         </ul>
