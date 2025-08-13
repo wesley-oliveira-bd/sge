@@ -29,10 +29,22 @@
         <input type="date" name="data_pgto" id="data_pgto">
         <label for="resto_pgto">Rest. pgto</label>
         <input type="number" name="resto_pgto" id="resto_pgto" step="0.01" readonly>
-        <label for="forma_pgto">Forma</label>
-        <input type="text" name="forma_pgto" id="forma_pgto">
+        <label>Forma de Pagamento:</label>
+        <select id="forma_pagamento" name="forma_pgto" onchange="verificaPagamento()">
+            <option value="">Selecione</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="pix">Pix</option>
+            <option value="cartao">Cartão</option>
+            <option value="prazo">Prazo</option>
+        </select>
         <label for="status">Status</label>
-        <input type="text" name="status" id="status">
+        <select name="status" id="status">
+            <option value="">Selecione</option>
+            <option value="aberto">Aberto</option>
+            <option value="pago">Pago</option>
+            <option value="atrasado">Atrasado</option>
+        </select><br><br>
+        <button type="submit" name="salvar" value="salvar">Salvar</button>
     </form>
 
     <script>
