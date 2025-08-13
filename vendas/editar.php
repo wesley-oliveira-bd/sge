@@ -12,6 +12,8 @@
     <?php
         include_once '../includes/header.php';
         include_once '../config/conexao.php';
+        date_default_timezone_set('America/Sao_Paulo');
+
 
         $id = intval($_GET['id']); // segurança básica
 
@@ -42,9 +44,9 @@
     <form action="inserir.php" id="form-venda" method="POST">
       <!-- Cabeçalho da venda -->
        <label for="id_venda">ID:</label>
-       <input type="number" name="id_venda" id="id_venda" value="<?=$dados_venda['id']; ?> readonly">
+       <input type="number" name="id_venda" id="id_venda" value="<?= $dados_venda['id']; ?>" readonly>
       <label>Data de Emissão:</label>
-      <input type="text" name="data_emissao" id="data_emissao" value="<?=$dados_venda['data_emissao']; ?> readonly"><br>
+      <input type="text" name="data_emissao" id="data_emissao_editada" value="<?=date("d/m/Y", strtotime($dados_venda['data_emissao'])); ?>" readonly><br>
       
       <label for="cliente_id">Cliente:</label>
       <table border="1">
@@ -59,7 +61,7 @@
           <tr>
             <th><input type="number" id="cliente_id" name="cliente_id" value="<?=$dados_venda['cliente_id']; ?>" readonly></th>
             <th>
-              <input type="text" id="cliente_nome" name="cliente_nome" autocomplete="off" placeholder="Digite o nome do cliente" value="">
+              <input type="text" id="cliente_nome" name="cliente_nome" autocomplete="off" placeholder="Digite o nome do cliente">
               <div id="resultadoBusca" style="position: absolute; background: #fff; border: 1px solid #ccc;"></div>
             </th>
             <th><input type="text" id="cliente_celular" name="cliente_celular" readonly></th>
@@ -101,12 +103,14 @@
       <!-- Pagamento -->
       <label>Forma de Pagamento:</label>
       <select id="forma_pagamento" name="forma_pgto" onchange="verificaPagamento()">
-        <option value="">Selecione</option>
-        <option value="dinheiro">Dinheiro</option>
-        <option value="pix">Pix</option>
-        <option value="cartao">Cartão</option>
-        <option value="prazo">Prazo</option>
+          <option value="">Selecione</option>
+          <option value="dinheiro" <?= ($contas[0]['forma_pgto']) === 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
+          <option value="pix" <?= ($contas[0]['forma_pgto']) === 'pix' ? 'selected' : '' ?>>Pix</option>
+          <option value="cartao" <?= ($contas[0]['forma_pgto']) === 'cartao' ? 'selected' : '' ?>>Cartão</option>
+          <option value="prazo" <?= ($contas[0]['forma_pgto']) === 'prazo' ? 'selected' : '' ?>>Prazo</option>
       </select><br>
+
+
       <div id="div_parcelamento" class="parcelamento">
         <label>Nº de Parcelas:</label>
         <input type="number" name="total_parcelas" id="parcelas" min="1" value="1" onchange="gerarParcelas()">

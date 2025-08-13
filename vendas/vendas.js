@@ -1,7 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
   document.getElementById('data_emissao').value = new Date().toLocaleDateString('pt-BR');
-
-});
+  });
 
 
 function verificaPagamento() {
