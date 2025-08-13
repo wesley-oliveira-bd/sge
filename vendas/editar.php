@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="vendas.js" defer></script>
+  <script src="editar.js" defer></script>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <title>Nova Venda</title>
 </head>
@@ -39,7 +39,7 @@
         }
     ?>
   
-  
+    <br>
    <div id="conteudo-venda">  
     <form action="inserir.php" id="form-venda" method="POST">
       <!-- Cabeçalho da venda -->
@@ -47,7 +47,7 @@
        <input type="number" name="id_venda" id="id_venda" value="<?= $dados_venda['id']; ?>" readonly>
       <label>Data de Emissão:</label>
       <input type="text" name="data_emissao" id="data_emissao_editada" value="<?=date("d/m/Y", strtotime($dados_venda['data_emissao'])); ?>" readonly><br>
-      
+      <br>
       <label for="cliente_id">Cliente:</label>
       <table border="1">
         <thead>
