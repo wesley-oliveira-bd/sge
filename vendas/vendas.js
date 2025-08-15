@@ -146,7 +146,7 @@ function selecionarCliente(id, nome, celular) {
           <input type="hidden" name="unidade[]" value="${unid}">
         </td>
         <td>
-          <input type="number" name="qtd[]" value="1" min="1" onchange="atualizarTotal(this)">
+          <input type="number" name="qtd[]" value="1" min="1" data-produto-id="123" onchange="atualizarTotal(this)">
         </td>
         <td>
           <input type="number" name="valor_unit[]" value="${venda}" step="0.01" onchange="atualizarTotal(this)">
@@ -264,4 +264,23 @@ document.addEventListener('DOMContentLoaded', function () {
   if (acrescimoInput) {
     acrescimoInput.addEventListener('input', atualizarTotalFinal);
   }
+});
+
+//função para verificar a quantidade de estoque em tempo real
+document.addEventListener('input', function(e) {
+    if (e.target.name === 'qtd[]') {
+        let qtdInformada = parseInt(e.target.value) || 0;
+        let produtoId = e.target.dataset.produtoId;
+
+        if (produtoId && qtdInformada > 0) {
+            fetch('verifica_estoque.php?id=' + produtoId)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.ok && qtdInformada > data.estoque) {
+                        alert(`Estoque insuficiente! Disponível: ${data.estoque}`);
+                        e.target.value = data.estoque; // ajusta para o máximo disponível
+                    }
+                });
+        }
+    }
 });
