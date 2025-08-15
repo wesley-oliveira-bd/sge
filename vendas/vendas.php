@@ -8,7 +8,6 @@
   <title>Nova Venda</title>
 </head>
 <body>
-
   <?php 
     include '../config/conexao.php';
     include '../includes/header.php';
@@ -96,10 +95,9 @@
       <input type="text" name="status" id="status">
       
       <!-- Botões -->
-      <button type="submit" name="salvar" value="salvar">Salvar</button>
-      <button type="button">Pesquisar Vendas</button>
-      <button type="button">Imprimir</button>
+      <button type="submit" id="btnSalvar" name="salvar" value="salvar" disabled>Salvar</button>
     </form>
+    <button type="button" id="btnCancelarVenda">Cancelar Venda</button>
   </div>
   </body>
   </html>

@@ -284,3 +284,75 @@ document.addEventListener('input', function(e) {
         }
     }
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnSalvar = document.getElementById('btnSalvar');
+    const cliente   = document.getElementById('cliente_id');
+    const totalVenda = document.getElementById('total_venda');
+
+    function verificaCampos() {
+        const total = parseFloat(totalVenda.value.replace(',', '.')) || 0;
+        const clienteVal = parseInt(cliente.value, 10) || 0;
+
+        if (clienteVal > 0 && total > 0) {
+            btnSalvar.disabled = false;
+        } else {
+            btnSalvar.disabled = true;
+        }
+    }
+
+    // Eventos que garantem detecção de mudanças
+    cliente.addEventListener('input', verificaCampos);
+    cliente.addEventListener('change', verificaCampos);
+    totalVenda.addEventListener('input', verificaCampos);
+    totalVenda.addEventListener('change', verificaCampos);
+
+    // Chamada inicial e também periódica para pegar alterações via autocomplete
+    verificaCampos();
+    setInterval(verificaCampos, 300); // verifica a cada 300ms
+
+    btnSalvar.addEventListener('click', function(e) {
+        if (btnSalvar.disabled) {
+            e.preventDefault();
+            alert('Preencha todos os campos ou cancele a venda');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnCancelar = document.getElementById('btnCancelarVenda');
+    const idVendaInput = document.getElementById('id_venda');
+
+    btnCancelar.addEventListener('click', function() {
+        const idVenda = idVendaInput.value;
+
+        if (!idVenda || parseInt(idVenda) <= 0) {
+            alert("Nenhuma venda ativa para cancelar.");
+            return;
+        }
+
+        if (!confirm("Tem certeza que deseja cancelar esta venda?")) return;
+
+        // Faz requisição AJAX para deletar
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "cancelar_venda.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                if (xhr.responseText.trim() === "ok") {
+                    alert("Venda cancelada com sucesso!");
+                    // Redireciona para vendas.php para atualizar a página
+                    window.location.href = "vendas.php";
+                } else {
+                    alert("Erro ao cancelar a venda: " + xhr.responseText);
+                }
+            } else {
+                alert("Erro na requisição AJAX: " + xhr.status);
+            }
+        };
+        xhr.send("id_venda=" + encodeURIComponent(idVenda));
+    });
+});
